@@ -1,0 +1,52 @@
+﻿@using ClpQrColoring.Globals;
+
+@{
+    ViewBag.Title = "網頁錯誤";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
+    {
+        ViewBag.PhoneBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/GeneralError/Background.png";
+    }
+    else
+    {
+        ViewBag.PhoneBackgroundImage = Url.Content("~/Public/images/Latest/GeneralError/Background.png");
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/GeneralError.css" />
+    <style>
+        @@media screen and (max-width: 767px) {
+            #divOuterMainBody {
+                background-image: url('@ViewBag.PhoneBackgroundImage');
+            }
+        }
+    </style>
+}
+
+<div id="divErrStatus" class="paddingOfTopDivFromNavBar">
+    <img alt="message"
+         class="img-responsive center-block"
+         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/GeneralError/GeneralErrorTitle_1x.png"
+         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/GeneralError/GeneralErrorTitle_1x.png 89w,
+                 @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/GeneralError/GeneralErrorTitle_2x.png 176w" />
+</div>
+
+<div id="divKid">
+    <img alt="kid"
+         class="img-responsive center-block"
+         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Error/Kid_1x.png"
+         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Error/Kid_1x.png 186w" />
+</div>
+
+<div id="divBackToHome">
+    <a href='@Url.Action("Index", "ArCharacters")'>
+        <img alt="back to upload"
+             class="img-responsive center-block"
+             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/GeneralError/BackToHomeButton_1x.png"
+             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/GeneralError/BackToHomeButton_1x.png 286w,
+                     @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/GeneralError/BackToHomeButton_2x.png 572w" />
+    </a>
+</div>

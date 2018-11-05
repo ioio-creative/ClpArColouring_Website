@@ -1,0 +1,308 @@
+﻿/* https://free.com.tw/google-fonts-noto-sans-cjk-webfont/ */
+/*
+ * Noto Sans TC (Chinese_traditional) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 100;
+    src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 300;
+    src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 900;
+    src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.woff2) format('woff2'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.woff) format('woff'), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.otf) format('opentype');
+}
+
+body {
+    font-family: 'Noto Sans TC';
+    font-weight: normal;
+}
+
+label {
+    font-weight: normal; /* override bootstrap */
+}
+
+.uploadFormLabel {
+    color: white;
+    padding-bottom: 1%;
+    /* override bootstrap default label */
+    display: inline-block;
+    /* override bootstrap default control-label */
+    text-align: left !important;
+}
+
+.myFormGroup {
+    margin: 0;
+}
+
+/* override bootstrap default form-control */
+.form-control {
+    background-color: #B9DBE8;
+    border-radius: 10px;
+    border: 0px;
+}
+
+/* https://stackoverflow.com/questions/5794039/how-can-i-create-a-custom-file-upload-with-only-html-js-and-css */
+/* http://jsfiddle.net/edelman/sSSNj/ */
+/*input[type=file].myFileUpload {*/
+#PostedFile {
+    /*height: 1px;
+    width: 1px;*/
+    /*
+        setting visibility: hidden or display: none 
+        may disable javacript validation,
+        need to add javascript to handle this
+        https://stackoverflow.com/questions/12308138/jquery-validator-plugin-with-displaynone-form-elements
+    */
+    /*visibility: hidden;*/
+    display: none;
+}
+
+#lbSelectedFileName {
+    color: white;
+    word-wrap: break-word;
+}
+
+/* override bootstrap default btn */
+.btnNoPad {
+    padding: 0 0;
+}
+
+.photoCriteria {
+    color: #2B5783;
+}
+
+.smallHint {
+    color: white;
+}
+
+.smallHintDet {
+    color: #2B5783;
+}
+
+@media screen and (max-width: 767px) {
+    .my-inner-container {
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    #divSubTitle {
+        /*padding-top: 3vh;
+        padding-bottom: 1.5vh;*/
+        /*padding-top: 5.33vw;*/
+        padding-top: 0vw;
+        padding-bottom: 2.66vw;
+    }
+
+        #divSubTitle img {
+            /*height: 2.5vh;*/
+            height: 4.44vw;
+        }
+
+    #formUploadPhoto {
+        /*padding-top: 2.5vh;*/
+        padding-top: 4.44vw;
+    }
+
+    #imgUploadFile {
+        /*height: 4.5vh;*/
+        height: 8vw;
+    }
+
+    .imgTips {
+        /*height: 2.5vh;*/
+        height: 4.44vw;
+    }
+
+    .imgTipsIphone {
+        /*height: 17.5vh;*/
+        height: 31.11vw;
+    }
+
+    #divMakeVideo {
+        /*padding-top: 1.5vh;*/
+        /*padding-top: 2.66vw;*/
+        padding-top: 0.5vw;
+    }
+
+    #btnMakeVideo {
+        /*height: 5vh;*/
+        height: 8.88vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .container {
+        width: 500px;
+    }
+
+    .my-inner-container {
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    #divSubTitle {
+        padding-top: 50px;
+        padding-bottom: 25px;
+    }
+
+        #divSubTitle img {
+            width: 225px;
+        }
+
+    #formUploadPhoto {
+        padding-top: 30px;
+    }
+
+    #imgUploadFile {
+        width: 115px;
+    }
+
+    .imgTips {
+        width: 16px;
+    }
+
+    .imgTipsIphone {
+        width: 100px;
+    }
+
+    #divMakeVideo {
+        padding-top: 20px;
+    }
+
+    #btnMakeVideo {
+        width: 200px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        width: 800px;
+    }
+
+    .my-inner-container {
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    #divSubTitle {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+        #divSubTitle img {
+            width: 225px;
+        }
+
+    #formUploadPhoto {
+        padding-top: 30px;
+    }
+
+    #imgUploadFile {
+        width: 140px;
+    }
+
+    .imgTips {
+        width: 20px;
+    }
+
+    .imgTipsIphone {
+        width: 100px;
+    }
+
+    #divMakeVideo {
+        padding-top: 25px;
+    }
+
+    #btnMakeVideo {
+        width: 200px;
+    }
+}
+
+
+/* control laptop compartment 2 */
+
+@media screen and (max-width: 991px) {
+    #divLeftRightComponent2 {
+        display: block;
+    }
+
+    #divUpDownComponent2 {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #divLeftRightComponent2 {
+        display: none;
+    }
+
+    #divUpDownComponent2 {
+        display: block;
+    }
+}
+
+/* end of control laptop compartment 2 */
+
+
+/* font size */
+
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 14px;
+        line-height: 1.428571429;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    body {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    body {
+        font-size: 18px;
+        line-height: 1.8;
+    }
+}
+
+/* end of font size */

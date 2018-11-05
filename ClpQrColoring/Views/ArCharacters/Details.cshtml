@@ -1,0 +1,251 @@
+﻿@model ClpQrColoring.Models.ArCharacters.User
+
+@using ClpQrColoring.Extensions;
+@using ClpQrColoring.Globals;
+
+@{
+    ViewBag.Title = "觀賞動畫";
+    ViewBag.OGType = "video.other";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.MailToBody = "我整咗一條屬於自己嘅超人中中3D動畫，click入嚟睇下啦！你都可以整埋一份，齊齊慳電啦 ;)%0D%0A" +
+           Url.Action(true, "Details", new { id = Model.ID });
+
+    ViewBag.HashTags = "#" + SiteGlobal.WebsiteKeywords.Replace(",", " #");
+
+    // Sharing Code:
+    // needed as I want to use different open graph images in different cases
+    // 0 = facebook
+    // 1 = whatsapp
+    if (ViewBag.SharingCode == 1)
+    {
+        ViewBag.OGImage = SiteGlobal.IsLoadStaticResourceFromAwsS3 ?
+            SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Sharing/PowerKidThumbnail.jpg" :
+            Url.Content(true, "~/Public/images/Latest/Sharing/PowerKidThumbnail.jpg");
+        ViewBag.OGImageWidth = 256;
+        ViewBag.OGImageHeight = 256;
+    }
+    else
+    {
+        ViewBag.OGImage = SiteGlobal.IsLoadStaticResourceFromAwsS3 ?
+            SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Sharing/PowerKidLong_compressed.jpg" :
+            Url.Content(true, "~/Public/images/Latest/Sharing/PowerKidLong_compressed.jpg");
+
+        ViewBag.OGImageWidth = 1200;
+        ViewBag.OGImageHeight = 630;
+    }
+
+    if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
+    {
+        ViewBag.PhoneBackgroudImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/DownloadVideo/Background.png";
+    }
+    else
+    {
+        ViewBag.PhoneBackgroudImage = Url.Content("~/Public/images/Latest/DownloadVideo/Background.png");
+
+    }
+}
+
+@section OpenGraphVideo {
+    @{
+        Html.RenderPartial("~/Views/ArCharacters/_OpenGraphVideoPartial.cshtml",
+            ViewBag.OGVideoObject as ClpQrColoring.Models.ArCharacters._OpenGraphVideoPartialViewModel
+        );
+    }
+}
+
+@section Styles {
+    <!-- http://videojs.com/ -->
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/video-js-6.2.7.min.css">
+
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/ArCharacters/Details.css" />
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/ArCharacters/_RainbowPartial.css" />
+    <style>
+        @@media screen and (max-width: 767px) {
+            #divOuterMainBody {
+                background-image: url('@ViewBag.PhoneBackgroudImage');
+            }
+        }
+    </style>
+    <style>
+        @@media screen and (min-width: 768px) and (max-width: 991px) {
+        }
+
+        @@media screen and (min-width: 992px) and (max-width: 1199px) {
+        }
+
+        @@media screen and (min-width: 1200px) {
+        }
+    </style>
+}
+
+@section HeaderScripts {
+    @*
+        <!-- http://videojs.com/ -->
+        <!-- If you'd like to support IE8 -->
+        <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    *@
+}
+
+<div id="divTitle">
+    <img alt="title"
+         class="img-responsive center-block onTop paddingOfTopDivFromNavBar"
+         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/TitleMiddle_1x.png"
+         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/TitleMiddle_1x.png 191w" />
+</div>
+
+<div id="divVideo">
+    @*<video id="videoOutput" class="onTop"
+               poster="@(Model.AwsS3BucketDomain + Model.AwsS3VideoThumbnailKey)">
+            <source type="video/mp4" src="@(Model.AwsS3BucketDomain + Model.AwsS3VideoKey)">
+        </video>*@
+
+    @* http://videojs.com/ *@
+    @* Important! TODO: use vjs-16-9 or vjs-4-3 depending on video aspect *@
+    <video id="videoOutput" class="video-js vjs-16-9 vjs-big-play-centered" controls preload="auto"
+           poster="@(Model.AwsS3BucketDomain + Model.AwsS3VideoThumbnailKey)" data-setup="{}">
+        <source type="video/mp4" src="@(Model.AwsS3BucketDomain + Model.AwsS3VideoKey)">
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>
+</div>
+
+<div id="divSharingBtns" class="row center-block">
+    <div class="col-xs-3">
+        @* href="#" is required for the mouse over cursor to change *@
+        <a id="btnFacebook" href="#">
+            <img id="imgFacebook" alt="fb"
+                 class="img-responsive center-block onTop"
+                 src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/FacebookButton_1x.png"
+                 srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/FacebookButton_1x.png 100w,
+                         @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/FacebookButton_2x.png 200w" />
+        </a>
+    </div>
+    <div id="divWhatsapp" class="col-xs-3">
+        <a id="btnWhatsapp" href="whatsapp://send?text=@Url.Action(true, "Details", "ArCharacters", new { sharingCode = 1 })"
+           data-action="share/whatsapp/share">
+            <img id="imgWhatsapp" alt="wtapp"
+                 class="img-responsive center-block onTop"
+                 src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/WhatsappButton_1x.png"
+                 srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/WhatsappButton_1x.png 100w,
+                         @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/WhatsappButton_2x.png 200w" />
+        </a>
+    </div>
+    <div class="col-xs-3">
+        <a id="btnEmail" href='mailto:%20?
+            cc=%20
+            &amp;bcc=%20
+            &amp;subject=超人中中3D動畫填色遊戲
+            &amp;body=@ViewBag.MailToBody'>
+            <img id="imgEmail" alt="em"
+                 class="img-responsive center-block onTop"
+                 src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/EmailButton_1x.png"
+                 srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/EmailButton_1x.png 100w,
+                         @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/EmailButton_2x.png 200w" />
+        </a>
+    </div>
+    <div class="col-xs-3">
+        <a id="btnDownloadVideo"
+           href="@(Model.AwsS3BucketDomain + Model.AwsS3VideoKey)"
+           download='@(SiteGlobal.LongTimeStampString() + SiteGlobal.VideoOutputExtension)'>
+            <img id="imgDownloadVideo" alt="dl"
+                 class="img-responsive center-block onTop"
+                 src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/DownloadButton_1x.png"
+                 srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/DownloadButton_1x.png 100w,
+                        @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/DownloadButton_2x.png 200w" />
+        </a>
+    </div>
+</div>
+
+<div id="divWatchItTogether">
+    <img alt="watch it now"
+         class="img-responsive center-block onTop"
+         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/WatchItTogether_1x.png"
+         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/WatchItTogether_1x.png 394w,
+                 @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/WatchItTogether_2x.png 787w" />
+</div>
+
+<div id="divMV">
+    <a href="https://www.youtube.com/watch?v=0FizlK_GRo8" target='_blank'>
+        <img alt="mv"
+             class="img-responsive center-block onTop"
+             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/MvButton_1x.png"
+             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/MvButton_1x.png 286w,
+                    @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadVideo/MvButton_2x.png 572w" />
+    </a>
+</div>
+
+@section Rainbow {
+    @{
+        string imgEarth2xSrc, imgRainbowKid2xSrc;
+        if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
+        {
+            imgEarth2xSrc = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/DownloadVideo/EarthRainbow_2x.png";
+            imgRainbowKid2xSrc = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/DownloadVideo/KidRainbow_2x.png";
+        }
+        else
+        {
+            imgEarth2xSrc = Url.Content("~/Public/images/Latest/DownloadVideo/EarthRainbow_2x.png");
+            imgRainbowKid2xSrc = Url.Content("~/Public/images/Latest/DownloadVideo/KidRainbow_2x.png");
+        }
+
+        Html.RenderPartial("~/Views/ArCharacters/_RainbowPartial.cshtml",
+            new ClpQrColoring.Models.ArCharacters._RainbowPartialViewModel()
+            {
+                ImgEarthSrc = imgEarth2xSrc,
+                ImgEarthSrcset = imgEarth2xSrc + " 774w",
+
+                ImgRainbowKidSrc = imgRainbowKid2xSrc,
+                ImgRainbowKidSrcset = imgRainbowKid2xSrc + " 804w"
+            }
+        );
+    }
+}
+
+@section Scripts {
+    <!-- http://videojs.com/ -->
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/video-6.2.7.min.js"></script>
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/Global/Site.js"></script>
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/ArCharacters/Details.js"></script>
+
+    <!-- can't add facebook sharing script in .js file -->
+    <!-- because I use server C# Url.Content(true) -->
+    <script>
+        /* facebook sharing */
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '@SiteGlobal.FacebookAppId',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v2.11'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        document.getElementById('btnFacebook').onclick = function () {
+            FB.ui({
+                method: 'share',
+                display: 'popup',
+                //mobile_iframe: true,  // not working in Google Pixel phone
+                href: '@Url.Action(true, "Details", "ArCharacters", new { sharingCode = 0 })',
+                hashtag: '@ViewBag.HashTags'
+            }, function (response) { });
+        }
+
+        /* end of facebook sharing */
+    </script>
+}

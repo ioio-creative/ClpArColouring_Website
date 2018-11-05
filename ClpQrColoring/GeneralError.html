@@ -1,0 +1,202 @@
+﻿<!-- Obsolete -->
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>General Error</title>
+
+    <link href="/3DColouring/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/3DColouring/Content/Site.css" rel="stylesheet" />   
+
+    <style>
+        @media screen and (max-width: 767px) {
+            #divInnerMainBody {
+                max-width: 414px; /* iPhone Plus width */
+            }
+
+            #divOuterMainBody {
+                /*position: relative;*/
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: scroll;
+            }
+        }
+
+        /* below Nokia Lumia 520 height */
+        @media screen and (max-width: 767px) and (max-height: 532px) {
+            #divOuterMainBody {
+                background-size: cover;
+                background-position: center center;
+            }
+        }
+
+        /* above Nokia Lumia 520 height */
+        @media screen and (max-width: 767px) and (min-height: 533px) {
+            #divOuterMainBody {
+                background-size: cover;
+                background-position: center bottom;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            #divOuterMainBody {
+                background-size: 750px auto, 100% 100%;
+                background-repeat: repeat-x, no-repeat;
+                background-position: center top, center center;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            #divOuterMainBody {
+                background-size: 750px auto, 100% 100%;
+                background-repeat: repeat-x, no-repeat;
+                background-position: center top, center center;
+            }
+        }
+    </style>
+
+    <style>
+        /* set repeated background image source except for mobile phone */
+        @media screen and (min-width: 767px) {
+            #divOuterMainBody {
+                background-image: url('/3DColouring/images/Latest/Background/CloudLoop_1x.png'), url('/3DColouring/images/Latest/Background/SkyBackground.jpg');
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css"
+          href="/3DColouring/Content/GeneralError.css" />
+    <style>
+        @media screen and (max-width: 767px) {
+            #divOuterMainBody {
+                background-image: url('/3DColouring/images/Latest/Error/Background.png');
+            }
+        }
+    </style>
+
+    <script src="/3DColouring/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="navbar-header">
+            <div class="container-fluid">
+                <div id="divNavbarRow" class="row vertical-align-center">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-3">
+                        <a href="#" data-toggle="collapse" data-target=".navbar-collapse">
+                            <img id="imgNav" alt="navigation"
+                                 class="img-responsive"
+                                 src="/3DColouring/images/Latest/Navbar/NavButton_1x.png"
+                                 srcset="/3DColouring/images/Latest/Navbar/NavButton_1x.png 45w"
+                                 sizes="(max-width: 767px) 35%,
+                                       (min-width: 768px) and (max-width: 991px) 30px,
+                                       (min-width: 992px) and (max-width: 1199px) 38px,
+                                       (min-width: 1200px) 45px,
+                                       30px" />
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <!--<a href='/3DColouring/'>-->
+                        <a href='https://www.clp.com.hk/PowerYou' target='_blank'>
+                            <img id="imgLogo" alt="logo"
+                                 class="img-responsive center-block"
+                                 src="/3DColouring/images/Latest/Navbar/ClpLogo_1x.png"
+                                 srcset="/3DColouring/images/Latest/Navbar/ClpLogo_1x.png 159w"
+                                 sizes="(max-width: 767px) 75%,
+                                       (min-width: 768px) and (max-width: 991px) 103px,
+                                       (min-width: 992px) and (max-width: 1199px) 132px,
+                                       (min-width: 1200px) 159px,
+                                       103px" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href='/3DColouring/Download'>
+                        <img alt="download sheet"
+                             class="img-responsive center-block navCollapsedDropDownImg"
+                             src="/3DColouring/images/Latest/Navbar/DownloadColorSheetButton_1x.png"
+                             srcset="/3DColouring/images/Latest/Navbar/DownloadColorSheetButton_1x.png 204w,
+                                    /3DColouring/images/Latest/Navbar/DownloadColorSheetButton_2x.png 407w" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a href='/3DColouring/Create'>
+                        <img alt="upload work"
+                             class="img-responsive center-block navCollapsedDropDownImg"
+                             src="/3DColouring/images/Latest/Navbar/UploadWorkButton_1x.png"
+                             srcset="/3DColouring/images/Latest/Navbar/UploadWorkButton_1x.png 206w,
+                                    /3DColouring/images/Latest/Navbar/UploadWorkButton_2x.png 412w" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="divOuterMainBody">
+        <div id="divInnerMainBody" class="container center-block">
+
+            <div id="divErrStatus" class="paddingOfTopDivFromNavBar">
+                <img alt="message"
+                     class="img-responsive center-block"
+                     src="/3DColouring/images/Latest/Error/UploadErrorTitle_1x.png"
+                     srcset="/3DColouring/images/Latest/Error/UploadErrorTitle_1x.png 74w, /3DColouring/images/Latest/Error/UploadErrorTitle_2x.png 148w" />
+            </div>
+
+            <div id="divKid">
+                <img alt="kid"
+                     class="img-responsive center-block"
+                     src="/3DColouring/images/Latest/Error/Kid_1x.png"
+                     srcset="/3DColouring/images/Latest/Error/Kid_1x.png 186w" />
+            </div>
+
+            <div id="divErrTip">
+                <img id="imgUploadErrTip"
+                     alt="tip"
+                     class="img-responsive center-block"
+                     src="/3DColouring/images/Latest/Error/UploadErrorTip_1x.png"
+                     srcset="/3DColouring/images/Latest/Error/UploadErrorTip_1x.png 335w" />
+            </div>
+
+            <div id="divBackToUpload">
+                <a href='/3DColouring/Create'>
+                    <img alt="back to upload"
+                         class="img-responsive center-block"
+                         src="/3DColouring/images/Latest/Error/BackToUploadButton_1x.png"
+                         srcset="/3DColouring/images/Latest/Error/BackToUploadButton_1x.png 286w,
+                     /3DColouring/images/Latest/Error/BackToUploadButton_2x.png 572w" />
+                </a>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script src="/3DColouring/Scripts/jquery-1.10.2.js"></script>
+
+    <script src="/3DColouring/Scripts/bootstrap.js"></script>
+    <script src="/3DColouring/Scripts/respond.js"></script>
+
+    <script>
+        $(function () {
+            if (window.screen.availWidth < 768) {
+                $('#divInnerMainBody').addClass('container-fluid');
+                $('#divInnerMainBody').removeClass('container');
+            } else {
+                $('#divInnerMainBody').addClass('container');
+                $('#divInnerMainBody').removeClass('container-fluid');
+            }
+        });
+    </script>
+</body>
+</html>

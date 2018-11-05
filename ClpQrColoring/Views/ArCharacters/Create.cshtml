@@ -1,0 +1,529 @@
+﻿@model ClpQrColoring.Models.ArCharacters.User
+
+@using ClpQrColoring.Extensions;
+@using ClpQrColoring.Globals;
+
+@{
+    ViewBag.Title = "上載作品";    
+    Layout = "~/Views/Shared/_Layout.cshtml";    
+
+    // Texts
+    // TODO: Put them in resource file
+    ViewBag.UploadFormLabelText = "上載作品";
+    ViewBag.PhotoCriteriaText = "(須為.jpg/.png格式,檔案上限:5MB)";
+    ViewBag.SmallHintText = "拍攝指引";
+    ViewBag.SmallHintDetText = "為使效果更佳，正面拍攝畫紙，必須包含黑色框線內所有圖畫。";
+
+    if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
+    {        
+        ViewBag.PhoneBackgroudImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/UploadWork/Background.png";
+
+        ViewBag.CloudLoopBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Background/UpperCloudLoop_1x.png";
+        ViewBag.SkyGradientBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Background/SkyBackground.jpg";
+
+        ViewBag.TipsModalBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/UploadWork/GuidelinePopup_2x.png";
+        ViewBag.TipsModalBackgroundImageWhenLoading = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/LoadingGif/DotLoadingLoop_1x.gif";
+        ViewBag.ProgressModalBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Loading/Background.png";
+
+        ViewBag.ClosePopupButton1xSrc = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/UploadWork/ClosePopupButton_1x.png";
+    }
+    else
+    {        
+        ViewBag.PhoneBackgroudImage = Url.Content("~/Public/images/Latest/UploadWork/Background.png");
+
+        ViewBag.CloudLoopBackgroundImage = Url.Content("~/Public/images/Latest/Background/UpperCloudLoop_1x.png");
+        ViewBag.SkyGradientBackgroundImage = Url.Content("~/Public/images/Latest/Background/SkyBackground.jpg");
+
+        ViewBag.TipsModalBackgroundImage = Url.Content("~/Public/images/Latest/UploadWork/GuidelinePopup_2x.png");
+        ViewBag.TipsModalBackgroundImageWhenLoading = Url.Content("~/Public/images/Latest/LoadingGif/DotLoadingLoop_1x.gif");
+        ViewBag.ProgressModalBackgroundImage = Url.Content("~/Public/images/Latest/Loading/Background.png");
+
+        ViewBag.ClosePopupButton1xSrc = Url.Content("~/Public/images/Latest/UploadWork/ClosePopupButton_1x.png");
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/ArCharacters/Create.css" />
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/ArCharacters/_PopupModals.css" />
+
+    <style>
+        @@media screen and (max-width: 767px) {
+            #divOuterMainBody {
+                background-image: url('@ViewBag.PhoneBackgroudImage');
+            }
+        }
+
+        /* set repeated background image source except for mobile phone */
+        /* use UpperCloudLoop_1x.png instead of CloudLoop_1x.png */
+        @@media screen and (min-width: 767px) {
+            #divOuterMainBody {
+                background-image: url('@ViewBag.CloudLoopBackgroundImage'),
+                                  url('@ViewBag.SkyGradientBackgroundImage');
+            }
+        }
+    </style>
+
+    <style>
+        @@media screen and (max-width: 767px) {
+            /* 
+                overwrite _Layout.cshtml, 
+                make background image sticks to top instead of bottom 
+                to accomodate the case when keyboard appears on 
+                mobile phone, when the screen height is considered 
+                shortened in Android browsers
+            */
+            #divOuterMainBody {
+                background-size: cover;
+                background-position: center top;
+            }
+        }
+
+        @@media screen and (min-width: 768px) and (max-width: 991px) {
+        }
+
+        @@media screen and (min-width: 992px) and (max-width: 1199px) {
+        }
+
+        @@media screen and (min-width: 1200px) {
+        }
+    </style>
+
+    <style>
+        /* modal popup tips */
+
+        .tipsModalBg {
+            background-image: url('@ViewBag.TipsModalBackgroundImage');
+        }
+
+        .tipsModalBgWhenLoading {
+            background-image: url('@ViewBag.TipsModalBackgroundImageWhenLoading');
+        }
+
+        /* end of modal popup tips */
+
+        /* modals to show image to video progress */
+
+        .progressModalBg {
+            background-image: url('@ViewBag.ProgressModalBackgroundImage');
+        }
+
+        /* end of modals to show image to video progress */
+    </style>
+}
+
+<div class="my-inner-container">
+    <div id="divTitle">
+        <img alt="title"
+             class="img-responsive center-block paddingOfTopDivFromNavBar"
+             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/Title_2x.png"
+             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/Title_2x.png 191w" />
+    </div>
+
+    @*https://www.aspsnippets.com/Articles/Fileupload-validation-using-Model-Data-Annotations-in-ASPNet-MVC.aspx*@
+    @using (Html.BeginForm("Create", "ArCharacters", FormMethod.Post,
+                        new { id = "formUploadPhoto", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @* laptop row starts *@
+        <div class="row">
+
+            @* laptop compartment 1 starts *@
+            <div class="form-horizontal col-xs-12 col-md-6">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div id="divSubTitle">
+                    <img alt="subtitle"
+                         class="img-responsive"
+                         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/SubTitle_1x.png"
+                         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/SubTitle_1x.png 176w,
+                     @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/SubTitle_2x.png 352w" />
+                </div>
+
+                <div class="form-group myFormGroup">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-md-12 control-label uploadFormLabel" })
+                    <div class="col-md-12">
+                        @*
+                            <input class="form-control" id="Email" name="Email" type="email">
+                        *@
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                        <span>&nbsp;</span>
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group myFormGroup">
+                    @Html.LabelFor(model => model.ConfirmEmail, htmlAttributes: new { @class = "col-md-12 control-label uploadFormLabel" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                        <span>&nbsp;</span>
+                        @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group myFormGroup">
+                    @*Html.LabelFor(model => model.PostedFile, htmlAttributes: new { @class = "col-md-12 control-label uploadFormLabel" })*@
+                    <label class="col-md-12 control-label uploadFormLabel" for="PostedFile">
+                        @ViewBag.UploadFormLabelText<span class="photoCriteria">&nbsp;@ViewBag.PhotoCriteriaText</span>
+                    </label>
+                    <div class="col-md-12">
+                        @* https://mobilehtml5.org/ts/?id=23 *@
+                        @Html.TextBoxFor(model => model.PostedFile, new { id = "PostedFile", type = "file", accept = "image/*" })                       
+                        <div>
+                            <a id="btnUploadFile" class="btn myBtn btnNoPad">
+                                <img id="imgUploadFile" alt="browse"
+                                     class="img-responsive"
+                                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/BrowsePhotoButton_1x.png"
+                                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/BrowsePhotoButton_1x.png 115w,
+                                         @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/BrowsePhotoButton_2x.png 230w" />
+                            </a>
+                            <span id="lbSelectedFileName"></span>
+                        </div>
+                        <span>&nbsp;</span>
+                        @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            @* laptop compartment 1 ends *@
+
+            @* laptop compartment 2 starts *@
+            <div class="col-xs-12 col-md-6">
+
+                <!-- divLeftRightComponent2 appears for small devices -->
+                <div id="divLeftRightComponent2">
+                    <div class="row vertical-center">
+                        <div class="col-xs-8" style="padding-right: 0;">
+                            <span class="pull-left smallHint">@ViewBag.SmallHintText&nbsp;&nbsp;</span>
+
+                            <!-- Trigger the modal with a button -->
+                            <a class="myBtn"
+                               data-toggle="modal"
+                               data-target="#tipsModal">
+                                <img alt="tips"
+                                     class="img-responsive imgTips"
+                                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/QuestionMark_1x.png"
+                                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/QuestionMark_1x.png 16w" />
+                            </a>
+
+                            <br />
+
+                            <span class="smallHintDet">@ViewBag.SmallHintDetText</span>
+                        </div>
+                        <div class="col-xs-4"
+                             style="padding-left: 0; padding-right: 0;">
+                            <img alt="color sample"
+                                 class="img-responsive center-block imgTipsIphone"
+                                 src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/TipsIphone_1x.png"
+                                 srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/TipsIphone_1x.png 67w,
+                                 @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/TipsIphone_2x.png 572w" />
+                        </div>
+                    </div>
+                </div>
+                <!-- end of divLeftRightComponent2 -->
+                <!-- divUpDownComponent2 appears for large devices -->
+                <div id="divUpDownComponent2">
+                    <div class="row vertical-align-center">
+                        <div class="col-md-12"
+                             style="padding-left: 0; padding-right: 0;">
+                            <img alt="color sample"
+                                 class="img-responsive center-block imgTipsIphone"
+                                 src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/TipsIphone_1x.png"
+                                 srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/TipsIphone_1x.png 286w,
+                                 @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/TipsIphone_2x.png 572w" />
+                        </div>
+                        <div class="col-md-12" style="padding-top: 20px;">
+                            <span class="pull-left smallHint">@ViewBag.SmallHintText&nbsp;&nbsp;</span>
+
+                            <!-- Trigger the modal with a button -->
+                            <a class="myBtn"
+                               data-toggle="modal"
+                               data-target="#tipsModal">
+                                <img alt="tips"
+                                     class="img-responsive imgTips"
+                                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/QuestionMark_1x.png"
+                                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/QuestionMark_1x.png 16w" />
+                            </a>
+
+                            <br />
+
+                            <span class="smallHintDet">@ViewBag.SmallHintDetText</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of divUpDownComponent2 -->
+
+            </div>
+            @* laptop compartment 2 ends *@
+
+        </div>
+        @* laptop row ends *@
+
+        <div id="divMakeVideo" class="lastBtnOfPage">
+            @* hidden field to store SignalR hub connection id, to be posted to server *@
+            @Html.HiddenFor(model => model.SignalrHubConnectionId)
+
+            @* https://stackoverflow.com/questions/3381609/button-image-as-form-input-submit-button *@
+            <input id="btnMakeVideo" type="image" alt="Make Video"
+                   class="img-responsive center-block myBtn"
+                   src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/CreateAnimationButton_2x.png"
+                   srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/UploadWork/CreateAnimationButton_2x.png 278w" />
+        </div>
+    }
+
+</div>
+
+
+<!-- Tips Modal -->
+@* https://www.w3schools.com/bootstrap/bootstrap_modal.asp *@
+<div id="tipsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        @* https://aclaes.com/responsive-background-images-with-srcset-and-sizes/ *@
+        @* requires ResponsiveBackgrondImage.js *@
+        <div class="modal-content tipsModalBgWhenLoading">
+            <a id="btnCloseTipsModal" href="#"
+               data-dismiss="modal"
+               class="pull-right">
+                <img alt="close modal"
+                     class="img-responsive"
+                     src='@ViewBag.ClosePopupButton1xSrc'
+                     srcset='@(ViewBag.ClosePopupButton1xSrc + " 39w")' />
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- modals to show image to video progress -->
+<!-- Image Uploaded Modal -->
+<div id="imgUploadedModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="progressModalBg">
+            <div class="divProgressModalStatus">
+                <img alt="uploading"
+                     class="img-responsive center-block"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/PhotoUploadingTitle_1x.png"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/PhotoUploadingTitle_1x.png 77w,
+                            @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/PhotoUploadingTitle_2x.png 154w" />
+            </div>
+            <div class="divProgressModalAppliance">
+                <img id="imgProgressModalFan" alt="fan"
+                     class="img-responsive center-block displayBlock"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/Fan_1x.png"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/Fan_1x.png 245w,
+                            @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/Fan_2x.png 490w" />
+                <img id="imgProgressModalAirCon" alt="AirCon"
+                     class="img-responsive center-block displayNone"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/AirCon_1x.png"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/AirCon_1x.png 510w,
+                             @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/AirCon_2x.png 1020w" />
+            </div>
+            <div class="divProgressModalMessage">
+                <img id="imgProgressModalFanMsg" alt="message"
+                     class="img-responsive center-block displayBlock"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/FanTip_1x.png"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/FanTip_1x.png 524w,
+                            @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/FanTip_2x.png 1048w" />
+                <img id="imgProgressModalAirConMsg" alt="message"
+                     class="img-responsive center-block displayNone"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/FanTip_1x.png"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/AirConTip_1x.png 484w,
+                            @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/AirConTip_2x.png 968w" />
+            </div>
+            <div class="divLoadingCountDown">
+                <img id="imgCountDown" alt="count down"
+                     class="img-responsive center-block onTop"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/LoadingGif/DotLoadingLoop_1x.gif"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/LoadingGif/DotLoadingLoop_1x.gif 94w" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Video Rendering Modal -->
+<div id="videoRenderingModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="progressModalBg">
+            <div class="divProgressModalStatus">
+                <img alt="uploading"
+                     class="img-responsive center-block"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/VideoRenderingTitle_1x.png"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/VideoRenderingTitle_1x.png 81w,
+                                @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/VideoRenderingTitle_2x.png 162w" />
+            </div>
+            <div class="divProgressModalAppliance">
+                <img id="imgProgressModalKid" alt="kid"
+                     class="img-responsive center-block"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/Kid_1x.png"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/Kid_1x.png 165w" />
+            </div>
+            <div class="divProgressModalMessage">
+                <img id="imgProgressModalKidMsg" alt="message"
+                     class="img-responsive center-block"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/KidTip_1x.png"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Loading/KidTip_1x.png 484w" />
+            </div>
+            <div class="divLoadingCountDown">
+                <img id="imgCountDown" alt="count down"
+                     class="img-responsive center-block onTop"
+                     src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/LoadingGif/DotLoadingLoop_1x.gif"
+                     srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/LoadingGif/DotLoadingLoop_1x.gif 94w" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@*
+    Important: when more modals are added, the modalIds array in
+    the JavaScript hideAllModals() function in Create.js need to be updated.
+*@
+
+<!-- end of modals to show image to video progress -->
+@* for testing SignalR *@
+@*
+    <ul id="discussion">
+        <li>testing</li>
+    </ul>
+*@
+
+
+@section Scripts {
+    <!--Script references. -->
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/jquery.form.min.js"></script>
+
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/Global/Site.js"></script>
+
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/ArCharacters/Create.js"></script>
+
+    <script>
+        // These are put here, instead of in Create.js as I use server code here
+        $(function () {
+            // https://stackoverflow.com/questions/5057990/how-can-i-check-if-a-background-image-is-loaded
+            // for tips modal
+            // show loading gif until tips background image is loaded
+            $('<img/>').attr('src', '@ViewBag.TipsModalBackgroundImage').on('load', function () {
+                $(this).remove(); // prevent memory leaks as benweet suggested
+                // can't swap the order of addClass() & removeClass()
+                $('.tipsModalBgWhenLoading').addClass('tipsModalBg');
+                $('.tipsModalBgWhenLoading').removeClass('tipsModalBgWhenLoading');
+            });
+
+            // AJAX form post
+            @*
+                Important Notes:
+                event.preventDefault() somehow does not prevent form submit in iOS ...
+                so $('#formUploadPhoto').submit event is not used
+            *@
+            @*$('#formUploadPhoto').submit(function (event) {
+                event.preventDefault();
+                // This may mean form.valid() would be called twice...
+                // But this serves as a work-around...
+                if ($(this).valid()) {
+                    hideAllModals();
+                    showModalStatic('imgUploadedModal');
+                    $(this).ajaxSubmit({
+                        success: function (result, status, xhr) {
+                            // if result is html text
+                            // How to replace the entire html webpage with ajax response?
+                            // https://stackoverflow.com/questions/553936/in-mvc-how-do-i-return-a-string-result
+                            //$('body').html(result);
+
+                            // better to have result as a new url
+                            window.location.href = result;
+                        },
+                        error: function (xhr, status, error) {
+                            window.location.href = '@Url.Action(false, "Index", "Error")';
+                        }
+                    });
+                }
+            });*@
+
+            $('#btnMakeVideo').click(function () {
+                // This may mean form.valid() would be called twice...
+                // But this serves as a work-around...
+                if ($('#formUploadPhoto').valid()) {
+                    enableNavigateAwayPrompt();
+                    hideAllModals();
+                    showModalStatic('imgUploadedModal');
+                    $('#formUploadPhoto').ajaxSubmit({
+                        success: function (result, status, xhr) {
+                            disableNavigateAwayPrompt();
+
+                            // if result is html text
+                            // How to replace the entire html webpage with ajax response?
+                            // https://stackoverflow.com/questions/553936/in-mvc-how-do-i-return-a-string-result
+                            //$('body').html(result);
+
+                            // better to have result as a new url
+                            window.location.href = result;
+                        },
+                        error: function (xhr, status, error) {
+                            disableNavigateAwayPrompt();
+                            window.location.href = '@Url.Action(false, "Index", "Error")';
+                        }
+                    });
+                }
+
+                // always return false as I have already $('#formUploadPhoto').ajaxSubmit() for valid form case
+                return false;
+            });
+        });
+    </script>
+
+    <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
+    <!--Reference the SignalR library. -->
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <!--Reference the autogenerated SignalR hub script. -->
+    <script src="~/signalr/hubs"></script>
+
+    <!-- can't add SignalR script in .js file -->
+    <!-- because I use server C# script in $.connection.hub.start().done -->
+    <script>
+        /* SignalR script to update UI to show image-to-video progress */
+        /* containing functions to be called by server */
+
+        $(function () {
+            // Reference the auto-generated proxy for the hub.
+            var imageToVideoProgress = $.connection.imageToVideoProgressHub;
+
+            var isVideoRenderingModalShown = false;
+
+            // Create functions that the hub can call back to display messages.
+            imageToVideoProgress.client.showVideoRenderingModal = function () {
+                if (!isVideoRenderingModalShown) {
+                    hideAllModals();
+                    showModalStatic('videoRenderingModal');
+                    isVideoRenderingModalShown = true;
+                }
+            };
+
+            // for testing SignalR
+            //imageToVideoProgress.client.addNewMessageToPage = function () {
+            //    // Add the message to the page.
+            //    $('#discussion').append('<li><strong>' + 'testing' + '</strong></li>');
+            //};
+
+            // Start the connection.
+            //$.connection.hub.logging = true;
+            $.connection.hub.start().done(function () {
+                // pass SignalR hub connection id to the hidden field
+                // so that the connection id will be posted back to server
+                // during form post
+                var connectionId = $.connection.hub.id;
+                $('#' + '@Html.IdFor(model => model.SignalrHubConnectionId)').val(connectionId);
+            });
+        });
+
+        /* end of SignalR script */
+    </script>    
+
+    @*Scripts.Render("~/bundles/jqueryval")*@
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/jquery.validate.min.js"></script>
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    <script src="@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/ArCharacters/CustomValidation.js"></script>
+}

@@ -1,0 +1,102 @@
+﻿/* The following is not used any more as I now use video.js */
+/* http://videojs.com/ */
+
+/* https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
+/* https://www.w3schools.com/css/css_rwd_videos.asp */
+/*
+#divVideo video {
+    width: 100%;
+    height: auto;
+}
+*/
+
+@media screen and (max-width: 767px) {
+    #divVideo {
+        /*padding-top: 1vh;*/
+        padding-top: 1.77vw;
+    }
+
+    #divSharingBtns {        
+        /*padding-top: 1vh;*/
+        padding-top: 1.77vw;
+        max-width: 320px;
+    }
+
+    #divWatchItTogether {        
+        /*padding-top: 2vh;*/
+        padding-top: 3.55vw;
+    }
+    #divWatchItTogether img {        
+        /*height: 2.5vh;*/
+        height: 4.44vw;
+    }
+
+    #divMV {        
+        /*padding-top: 2vh;*/
+        padding-top: 3.55vw;        
+    }
+    #divMV img {
+        /*height: 4vh;*/
+        height: 7.11vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    /* have to cap container width as it affects video width when screen width > 1200px */
+    .container {
+        width: 600px;
+    }    
+
+    #divVideo {
+        padding-top: 50px;
+    }
+
+    #divSharingBtns {
+        padding-top: 40px;
+        width: 265px;
+    }
+
+    #divWatchItTogether {
+        padding-top: 30px;
+    }
+    #divWatchItTogether img {
+        width: 300px;
+    }
+
+    #divMV {
+        padding-top: 30px;
+    }
+    #divMV img {
+        width: 200px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    /* have to cap container width as it affects video width when screen width > 1200px */
+    .container {
+        width: 500px;
+    }
+
+    #divVideo {
+        padding-top: 20px;              
+    }
+
+    #divSharingBtns {
+        padding-top: 20px;
+        width: 200px;
+    }
+
+    #divWatchItTogether {
+        padding-top: 20px;
+    }
+    #divWatchItTogether img {
+        width: 275px;
+    }
+
+    #divMV {
+        padding-top: 20px;        
+    }
+    #divMV img {
+        width: 200px;
+    }
+}

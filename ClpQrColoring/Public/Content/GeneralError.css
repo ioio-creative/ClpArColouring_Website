@@ -1,0 +1,64 @@
+﻿@media screen and (max-width: 767px) {
+    #divErrStatus > img {
+        /*height: 30vh;*/
+        height: 53.3vw;
+    }
+
+    #divKid {
+        /*padding-top: 2.5vh;*/
+        padding-top: 4.44vw;
+    }
+    #divKid > img {
+        /*height: 20vh;*/
+        height: 35.55vw;
+    }
+
+    #divBackToHome {
+        /*padding-top: 4vh;*/
+        padding-top: 7.11vw;
+    }
+    #divBackToHome > a > img {
+        /*height: 6.5vh;*/
+        height: 11.55vw;
+    }        
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    #divErrStatus > img {
+        width: 47.5px;
+    }
+
+    #divKid {
+        padding-top: 30px;
+    }
+    #divKid > img {
+        width: 100px;
+    }
+  
+    #divBackToHome {
+        padding-top: 30px;
+    }
+    #divBackToHome > a > img {
+        width: 200px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #divErrStatus > img {
+        width: 40px;
+    }
+
+    #divKid {
+        padding-top: 30px;
+    }
+    #divKid > img {
+        width: 90px;
+    }
+  
+    #divBackToHome {
+        padding-top: 30px;
+    }
+    #divBackToHome > a > img {
+        width: 200px;
+    }
+}

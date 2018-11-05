@@ -1,0 +1,54 @@
+﻿/* divRainbow */
+/* divRainbow only appears in some pages */
+
+#divRainbow img {
+    max-height: 300px;
+}
+
+/* below mobile phone */
+@media screen and (max-width: 767px) {
+    #divRainbow {
+        display: none;
+    }
+}
+
+/* above mobile phone */
+@media screen and (min-width: 768px) {
+    #divRainbow {
+        display: block;
+    }
+}
+
+/* below iPad height */ /* max-height: 999px */
+@media screen and (min-width: 768px) and (max-height: 738px) {
+    #divRainbow {
+        position: static;
+    }
+
+    /* override general bottom padding set in Site.css */
+    #divOuterMainBody {
+        padding-bottom: 0;
+    }
+}
+
+/* above iPad height */ /* max-height: 1000px */
+@media screen and (min-width: 768px) and (min-height: 739px) {
+    #divRainbow {
+        /* sit at bottom */
+        /* https://stackoverflow.com/questions/8824831/make-div-stay-at-bottom-of-pages-content-all-the-time-even-when-there-are-scrol/8825714#8825714 */
+        /*position: fixed;
+        bottom: 0;
+        width: 100%;*/
+
+        /* navbar-fixed-bottom */
+        position: fixed;
+        right: 0;
+        left: 0;
+        border-width: 0 0 1px;
+
+        bottom: 0;
+        margin-bottom: 0;
+    }
+}
+
+/* end of divRainbow */

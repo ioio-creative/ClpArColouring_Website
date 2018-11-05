@@ -1,0 +1,57 @@
+﻿@* https://stackoverflow.com/questions/3239006/how-do-i-import-a-namespace-in-razor-view-page *@
+@using ClpQrColoring.Extensions;
+
+<!DOCTYPE html>
+<html xmlns:og="https://ogp.me/ns#">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    
+    @* open graph protocol *@
+    <meta property="og:title" content="@ViewBag.OGTitle" />
+    <meta property="og:site_name" content="@ViewBag.Title" />
+    <meta property="og:description" content="@ViewBag.OGDesc">
+    <meta property="og:type" content="website" />    
+    @* https://stackoverflow.com/questions/16084081/get-absolute-path-of-file-on-content *@
+    <meta property="og:url" content="@Url.Content(true)" />
+    <meta property="og:image" content="@ViewBag.OGImage" />
+    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
