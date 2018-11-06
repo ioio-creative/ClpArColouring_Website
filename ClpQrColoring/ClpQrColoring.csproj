@@ -293,7 +293,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+<<<<<<< HEAD
     <Content Include="favicon.bak.ico" />
+=======
+>>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     <Content Include="favicon.ico" />
     <Content Include="GeneralError.html" />
     <Content Include="Global.asax" />
@@ -318,7 +321,11 @@
     <Content Include="Public\images\Latest\Background\CloudLoop_2x.png" />
     <Content Include="Public\images\Latest\Background\SkyBackground.jpg" />
     <Content Include="Public\images\Latest\Background\UpperCloudLoop_1x.png" />
+<<<<<<< HEAD
     <Content Include="Public\images\Latest\ColourSheet\CLPPowerYou-3DColorSheet_20171024.jpg" />
+=======
+    <Content Include="Public\images\Latest\ColourSheet\CLPPowerYou-3DColorSheet.jpg" />
+>>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     <Content Include="Public\images\Latest\DownloadPaper\Background.png" />
     <Content Include="Public\images\Latest\DownloadPaper\DownloadPaperButton_1x.png" />
     <Content Include="Public\images\Latest\DownloadPaper\DownloadPaperButton_2x.png" />
@@ -467,6 +474,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+<<<<<<< HEAD
+=======
+    <Content Include="favicon.ico.bak" />
+>>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     <Content Include="Public\Content\bootstrap-theme.css.map" />
     <Content Include="Public\Content\bootstrap-theme.min.css.map" />
     <Content Include="Public\Content\bootstrap.css.map" />
@@ -493,14 +504,22 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\BadRequest.cshtml" />
+<<<<<<< HEAD
     <None Include="Views\Shared\Error.bak.cshtml" />
+=======
+    <None Include="Views\Shared\Error.cshtml.bak" />
+>>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\ArCharacters\Download.cshtml" />
     <Content Include="Views\ArCharacters\Details.cshtml" />
     <Content Include="Views\ArCharacters\ErrorInfo.cshtml" />
     <Content Include="Views\ArCharacters\_RainbowPartial.cshtml" />
     <Content Include="Views\ArCharacters\_OpenGraphVideoPartial.cshtml" />
+<<<<<<< HEAD
     <None Include="Views\Shared\_Layout.bak.cshtml" />
+=======
+    <None Include="Views\Shared\_Layout.cshtml.bak" />
+>>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -530,6 +549,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+<<<<<<< HEAD
+=======
+    <Folder Include="Public\images\Latest\SideMenu\" />
+>>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

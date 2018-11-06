@@ -36,7 +36,11 @@ namespace ClpQrColoring.Utilities.AWS
                     BucketName = bucketName,
                     Key = keyName,
                     FilePath = localFilePath,
+<<<<<<< HEAD
                     ContentType = contentType                   
+=======
+                    ContentType = contentType,
+>>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                 };
 
                 if (isPublicReadAllowed)

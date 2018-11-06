@@ -13,7 +13,12 @@ var modalIds = ['tipsModal', 'imgUploadedModal',
 $(function () {
     // show tips modal on page loads
     hideAllModals();
+<<<<<<< HEAD
     $('#tipsModal').modal();    
+=======
+    $('#tipsModal').modal();
+
+>>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
 
     // https://stackoverflow.com/questions/12308138/jquery-validator-plugin-with-displaynone-form-elements
     // https://stackoverflow.com/questions/22613983/jquery-validate-ignore-and-more
@@ -55,7 +60,10 @@ $(function () {
 
 
     /* swapping images in imgUploadedModal */
+<<<<<<< HEAD
 
+=======
+>>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     var isFanShown = true;
     var imgUploadedModalSetInterval = setInterval(
         function () {
