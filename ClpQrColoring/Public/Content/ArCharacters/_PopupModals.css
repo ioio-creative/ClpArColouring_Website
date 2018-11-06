@@ -9,35 +9,24 @@
     
     border-radius: 40px;
     */
-<<<<<<< HEAD
 
-=======
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-color: #91DCE8;
-<<<<<<< HEAD
 
     border-radius: 40px; 
-=======
-    border-radius: 40px;
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
 }
 
 .tipsModalBgWhenLoading {
     background-repeat: no-repeat;
     background-position: center;
     background-color: #91DCE8;
-<<<<<<< HEAD
 
-=======
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     border-radius: 40px;
 }
 
 @media screen and (max-width: 767px) {
-<<<<<<< HEAD
     .tipsModalBg {        
         /* vh : vw = 16 : 9 for phone */
         /* make sure not to make width > 100vw */
@@ -48,26 +37,13 @@
         height: 142.22vw;
         width: 94.75vw;
         margin: auto; 
-=======
-    .tipsModalBg {
-        /* vh : vw = 16 : 9 for phone */
-        /* make sure not to make width > 100vw */
-        /*height: 80vh;
-        width: 53.3vh;*/
-        height: 142.22vw;
-        width: 94.75vw;
-        margin: auto;
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     }
 
     .tipsModalBgWhenLoading {
         height: 142.22vw;
         width: 94.75vw;
         margin: auto;
-<<<<<<< HEAD
 
-=======
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
         background-size: 100px;
     }
 
@@ -75,7 +51,6 @@
         padding-top: 5%;
         padding-right: 5%;
     }
-<<<<<<< HEAD
     #btnCloseTipsModal img {
         width: 39px;
     }
@@ -83,16 +58,6 @@
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .tipsModalBg {        
-=======
-
-        #btnCloseTipsModal img {
-            width: 39px;
-        }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .tipsModalBg {
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
         height: 587px;
         width: 390px;
         margin: auto;
@@ -102,10 +67,7 @@
         height: 587px;
         width: 390px;
         margin: auto;
-<<<<<<< HEAD
 
-=======
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
         background-size: 100px;
     }
 
@@ -113,7 +75,6 @@
         padding-top: 5%;
         padding-right: 5%;
     }
-<<<<<<< HEAD
     #btnCloseTipsModal img {
         width: 39px;
     }
@@ -121,33 +82,16 @@
 
 @media screen and (min-width: 992px) {
     .tipsModalBg {        
-=======
-
-        #btnCloseTipsModal img {
-            width: 39px;
-        }
-}
-
-@media screen and (min-width: 992px) {
-    .tipsModalBg {
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
         height: 600px;
         width: 400px;
         margin: auto;
     }
 
-<<<<<<< HEAD
     .tipsModalBgWhenLoading {        
         height: 600px;
         width: 400px;
         margin: auto;
 
-=======
-    .tipsModalBgWhenLoading {
-        height: 600px;
-        width: 400px;
-        margin: auto;
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
         background-size: 100px;
     }
 
@@ -155,16 +99,9 @@
         padding-top: 5%;
         padding-right: 5%;
     }
-<<<<<<< HEAD
     #btnCloseTipsModal img {
         width: 39px;
     }
-=======
-
-        #btnCloseTipsModal img {
-            width: 39px;
-        }
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
 }
 
 /* end of modal popup tips */
@@ -173,29 +110,17 @@
 /* modals to show image to video progress */
 
 /* common classes */
-<<<<<<< HEAD
 .progressModalBg {    
-=======
-.progressModalBg {
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-color: #A2DAE6;
-<<<<<<< HEAD
 
     border-radius: 40px;            
 }
 
 @media screen and (max-width: 767px) {
     .progressModalBg {        
-=======
-    border-radius: 40px;
-}
-
-@media screen and (max-width: 767px) {
-    .progressModalBg {
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
         /*height: 90vh;*/
         height: 160vw;
     }
@@ -204,43 +129,23 @@
         /*padding-top: 5vh;*/
         padding-top: 8.88vw;
     }
-<<<<<<< HEAD
     .divProgressModalStatus > img {
         /*height: 35vh;*/
         height: 62.22vw;
     }
-=======
-
-        .divProgressModalStatus > img {
-            /*height: 35vh;*/
-            height: 62.22vw;
-        }
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
 
     .divProgressModalAppliance {
         /*padding-top: 5vh;*/
         padding-top: 8.88vw;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalFan {
         /*height: 20vh;*/
         height: 35.55vw;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalAirCon {
         /*height: 20vh;*/
         height: 35.55vw;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalKid {
         /*height: 20vh;*/
         height: 35.55vw;
@@ -250,26 +155,14 @@
         /*padding-top: 5vh;*/
         padding-top: 8.88vw;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalFanMsg {
         /*height: 6.5vh;*/
         height: 11.55vw;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalAirConMsg {
         /*height: 6.5vh;*/
         height: 11.55vw;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalKidMsg {
         /*height: 6.5vh;*/
         height: 11.55vw;
@@ -279,7 +172,6 @@
         /*padding-top: 4vh;*/
         padding-top: 7.11vw;
     }
-<<<<<<< HEAD
     .divLoadingCountDown > img {        
         /*height: 1.5vh;*/
         height: 2.66vw;
@@ -289,55 +181,24 @@
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .progressModalBg {        
         height: 700px;         
-=======
-
-        .divLoadingCountDown > img {
-            /*height: 1.5vh;*/
-            height: 2.66vw;
-        }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .progressModalBg {
-        height: 700px;
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     }
 
     .divProgressModalStatus {
         padding-top: 50px;
     }
-<<<<<<< HEAD
     .divProgressModalStatus > img {
         width: 45px;
     }
-=======
-
-        .divProgressModalStatus > img {
-            width: 45px;
-        }
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
 
     .divProgressModalAppliance {
         padding-top: 25px;
     }
-<<<<<<< HEAD
     #imgProgressModalFan {
         width: 120px;
     }
     #imgProgressModalAirCon {
         width: 220px;
     }
-=======
-
-    #imgProgressModalFan {
-        width: 120px;
-    }
-
-    #imgProgressModalAirCon {
-        width: 220px;
-    }
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalKid {
         width: 100px;
     }
@@ -345,24 +206,12 @@
     .divProgressModalMessage {
         padding-top: 25px;
     }
-<<<<<<< HEAD
     #imgProgressModalFanMsg {
         width: 370px;
     }
     #imgProgressModalAirConMsg {
         width: 370px;
     }
-=======
-
-    #imgProgressModalFanMsg {
-        width: 370px;
-    }
-
-    #imgProgressModalAirConMsg {
-        width: 370px;
-    }
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalKidMsg {
         width: 320px;
     }
@@ -370,7 +219,6 @@
     .divLoadingCountDown {
         padding-top: 35px;
     }
-<<<<<<< HEAD
     .divLoadingCountDown > img {
         width: 100px;
     }
@@ -379,54 +227,24 @@
 @media screen and (min-width: 992px) {
     .progressModalBg {        
         height: 700px;         
-=======
-
-        .divLoadingCountDown > img {
-            width: 100px;
-        }
-}
-
-@media screen and (min-width: 992px) {
-    .progressModalBg {
-        height: 700px;
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     }
 
     .divProgressModalStatus {
         padding-top: 50px;
     }
-<<<<<<< HEAD
     .divProgressModalStatus > img {
         width: 45px;
     }
-=======
-
-        .divProgressModalStatus > img {
-            width: 45px;
-        }
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
 
     .divProgressModalAppliance {
         padding-top: 25px;
     }
-<<<<<<< HEAD
     #imgProgressModalFan {
         width: 120px;
     }
     #imgProgressModalAirCon {
         width: 220px;
     }
-=======
-
-    #imgProgressModalFan {
-        width: 120px;
-    }
-
-    #imgProgressModalAirCon {
-        width: 220px;
-    }
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalKid {
         width: 100px;
     }
@@ -434,24 +252,12 @@
     .divProgressModalMessage {
         padding-top: 25px;
     }
-<<<<<<< HEAD
     #imgProgressModalFanMsg {
         width: 370px;
     }
     #imgProgressModalAirConMsg {
         width: 370px;
     }
-=======
-
-    #imgProgressModalFanMsg {
-        width: 370px;
-    }
-
-    #imgProgressModalAirConMsg {
-        width: 370px;
-    }
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     #imgProgressModalKidMsg {
         width: 320px;
     }
@@ -459,17 +265,9 @@
     .divLoadingCountDown {
         padding-top: 35px;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
     .divLoadingCountDown > img {
         width: 100px;
     }
 }
 
-<<<<<<< HEAD
 /* end of modals to show image to video progress */
-=======
-/* end of modals to show image to video progress */
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a

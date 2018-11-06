@@ -26,21 +26,13 @@ namespace ClpQrColoring.Utilities
         private static SmtpClient GetNewSmtpClientFromSmtpSectionConfig(SmtpSection smtpSec)
         {
             NetworkCredential credential = new NetworkCredential()
-<<<<<<< HEAD
             {                
-=======
-            {
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                 UserName = smtpSec.Network.UserName,
                 Password = smtpSec.Network.Password
             };
 
             return new SmtpClient()
-<<<<<<< HEAD
             {                
-=======
-            {
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                 Credentials = credential,
                 Host = smtpSec.Network.Host,
                 Port = smtpSec.Network.Port,
@@ -88,17 +80,10 @@ namespace ClpQrColoring.Utilities
 
                 using (MailMessage message = new MailMessage())
                 {
-<<<<<<< HEAD
                     message.From = new MailAddress(smtp_clp_noreply.From);                                       
                     AddMultipleRecipientsToMailMessage(message, receiverAddrs);
                     message.Subject = "超人中中3D動畫填色遊戲";
                     message.Body = String.Format(mailBodyFormat, 
-=======
-                    message.From = new MailAddress(smtp_clp_noreply.From);
-                    AddMultipleRecipientsToMailMessage(message, receiverAddrs);
-                    message.Subject = "超人中中3D動畫填色遊戲";
-                    message.Body = String.Format(mailBodyFormat,
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                         urlHelper.Action(true, "Details", new { id = newUserId }),
                         imgInEmailSrc);
                     message.IsBodyHtml = true;
@@ -107,11 +92,7 @@ namespace ClpQrColoring.Utilities
                     {
                         await smtp.SendMailAsync(message);
                     }
-<<<<<<< HEAD
                 }                
-=======
-                }
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
             }
             catch (Exception ex)
             {
@@ -126,11 +107,7 @@ namespace ClpQrColoring.Utilities
         {
             StringBuilder MessageBodyBuilder = new StringBuilder();
             MessageBodyBuilder.AppendFormat("********** {0} **********", DateTime.Now);
-<<<<<<< HEAD
             MessageBodyBuilder.AppendLine("");                       
-=======
-            MessageBodyBuilder.AppendLine("");
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
             if (exc.InnerException != null)
             {
                 MessageBodyBuilder.Append("Inner Exception Type: ");
@@ -176,20 +153,12 @@ namespace ClpQrColoring.Utilities
             catch (Exception ex)
             {
                 // TODO: Silence exception when sending email?
-<<<<<<< HEAD
                 Console.WriteLine("Could not send internal error notification e-mail." + Environment.NewLine + 
-=======
-                Console.WriteLine("Could not send internal error notification e-mail." + Environment.NewLine +
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                     "Exception caught: " + ex);
             }
         }
 
-<<<<<<< HEAD
         public async static Task SendInternalEventNotificationAsync(string receiverAddrs, 
-=======
-        public async static Task SendInternalEventNotificationAsync(string receiverAddrs,
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
             string eventName, string actionName, string newUserId)
         {
             StringBuilder MessageBodyBuilder = new StringBuilder();

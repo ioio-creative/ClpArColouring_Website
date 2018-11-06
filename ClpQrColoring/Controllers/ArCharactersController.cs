@@ -23,15 +23,9 @@ namespace ClpQrColoring.Controllers
         private static string EventNotificationEmailRecipients = SiteGlobal.ErrorNotificationEmailRecipients;
 
         // GET: ArCharacters
-<<<<<<< HEAD
         [AllowAnonymous]
         public ActionResult Index()
         {            
-=======
-        //[AllowAnonymous]
-        public ActionResult Index()
-        {
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
             ViewBag.SecsToStayInIndex = SiteGlobal.NumOfSecsToStayInLandingPage;
             return View();
         }
@@ -76,11 +70,7 @@ namespace ClpQrColoring.Controllers
         // https://msdn.microsoft.com/en-us/library/e1f13641(v=vs.100).aspx
         // Also check the Idle Timeout attribute of AWS Elastic Load Balancer.
         // https://aws.amazon.com/blogs/aws/elb-idle-timeout-control/
-<<<<<<< HEAD
         [AsyncTimeout(12000000)]        
-=======
-        [AsyncTimeout(12000000)]
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
         public async Task<ActionResult> Create([Bind(Include = "Email, ConfirmEmail, PostedFile, SignalrHubConnectionId")] User user)
         {
             if (SiteGlobal.IsListeningToArCharactersCreateRequest)
@@ -151,11 +141,7 @@ namespace ClpQrColoring.Controllers
                         // TODO: warping image process error handling                    
 
                         //return RedirectToAction("ErrorInfo", new { errorCode = warpedImgProcExitCode });
-<<<<<<< HEAD
                         return Content(urlHelper.Action("ErrorInfo", new { errorCode = warpedImgProcExitCode }));                        
-=======
-                        return Content(urlHelper.Action("ErrorInfo", new { errorCode = warpedImgProcExitCode }));
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                     }
 
                     /* end of original image to warped image process */
@@ -201,11 +187,7 @@ namespace ClpQrColoring.Controllers
 
                     while (true)
                     {
-<<<<<<< HEAD
                         Thread.Sleep(5000);                        
-=======
-                        Thread.Sleep(5000);
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
 
                         if (System.IO.File.Exists(outputVideoPath))
                         {
@@ -275,10 +257,7 @@ namespace ClpQrColoring.Controllers
                      * the local video file becauuse it is being used by another
                      * process.
                      * In such cases, I will retry once.
-<<<<<<< HEAD
                      * Added by Christopher Wong, 2018-07-18
-=======
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                      */
                     try
                     {
@@ -315,11 +294,7 @@ namespace ClpQrColoring.Controllers
 
                     // https://stackoverflow.com/questions/1257482/redirecttoaction-with-parameter
                     //return RedirectToAction("Details", new { id = newUserId });
-<<<<<<< HEAD
                     return Content(urlHelper.Action("Details", new { id = newUserId }));                   
-=======
-                    return Content(urlHelper.Action("Details", new { id = newUserId }));
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                 }
                 else
                 {
@@ -344,11 +319,7 @@ namespace ClpQrColoring.Controllers
         // needed as I want to use different open graph images in different cases
         // 0 = facebook
         // 1 = whatsapp
-<<<<<<< HEAD
         [AllowAnonymous]
-=======
-        //[AllowAnonymous]
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
         public ActionResult Details(string id, int sharingCode = 0)
         {
             if (String.IsNullOrEmpty(id))
@@ -356,11 +327,7 @@ namespace ClpQrColoring.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-<<<<<<< HEAD
             User userView = 
-=======
-            User userView =
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                 DataAccess.ColorAppDataAccess.GetUserById(id);
             if (userView == null)
             {
@@ -410,11 +377,7 @@ namespace ClpQrColoring.Controllers
                         errorInfo.ImgErrStatusSrc = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/PhotoErrorTitle_1x.png";
                         errorInfo.ImgErrStatusSrcset = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/PhotoErrorTitle_1x.png" + " 88w, " +
                             SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/PhotoErrorTitle_2x.png" + " 175w";
-<<<<<<< HEAD
                         
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                         errorInfo.ImgErrTipSrc = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/PhotoErrorTip_1x.png";
                         errorInfo.ImgErrTipSrcset = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/PhotoErrorTip_1x.png" + " 445w";
                     }
@@ -427,11 +390,7 @@ namespace ClpQrColoring.Controllers
                         errorInfo.ImgErrTipSrc = Url.Content("~/Public/images/Latest/Error/PhotoErrorTip_1x.png");
                         errorInfo.ImgErrTipSrcset = Url.Content("~/Public/images/Latest/Error/PhotoErrorTip_1x.png") + " 445w";
                     }
-<<<<<<< HEAD
                     
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                     break;
                 case 1:
                 case 2:
@@ -444,15 +403,9 @@ namespace ClpQrColoring.Controllers
                     if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
                     {
                         errorInfo.ImgErrStatusSrc = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/UploadErrorTitle_1x.png";
-<<<<<<< HEAD
                         errorInfo.ImgErrStatusSrcset = SiteGlobal.StaticResourceUrlPrefix +  "Public/images/Latest/Error/UploadErrorTitle_1x.png" + " 74w, " +
                             SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/UploadErrorTitle_2x.png" + " 148w";
                         
-=======
-                        errorInfo.ImgErrStatusSrcset = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/UploadErrorTitle_1x.png" + " 74w, " +
-                            SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/UploadErrorTitle_2x.png" + " 148w";
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                         errorInfo.ImgErrTipSrc = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/UploadErrorTip_1x.png";
                         errorInfo.ImgErrTipSrcset = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/UploadErrorTip_1x.png" + " 335w";
                     }
@@ -461,11 +414,7 @@ namespace ClpQrColoring.Controllers
                         errorInfo.ImgErrStatusSrc = Url.Content("~/Public/images/Latest/Error/UploadErrorTitle_1x.png");
                         errorInfo.ImgErrStatusSrcset = Url.Content("~/Public/images/Latest/Error/UploadErrorTitle_1x.png") + " 74w, " +
                             Url.Content("~/Public/images/Latest/Error/UploadErrorTitle_2x.png") + " 148w";
-<<<<<<< HEAD
                         
-=======
-
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                         errorInfo.ImgErrTipSrc = Url.Content("~/Public/images/Latest/Error/UploadErrorTip_1x.png");
                         errorInfo.ImgErrTipSrcset = Url.Content("~/Public/images/Latest/Error/UploadErrorTip_1x.png") + " 335w";
                     }

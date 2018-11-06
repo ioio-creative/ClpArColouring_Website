@@ -1,10 +1,6 @@
 ﻿using ClpQrColoring.Globals;
 using ClpQrColoring.Utilities;
 using System;
-<<<<<<< HEAD
-=======
-using System.Collections.Generic;
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
 using System.Linq;
 
 namespace ClpQrColoring.DataAccess

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-﻿using System;
-using System.IO;
-=======
 ﻿using FileHelperDLL;
 using System;
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
 using System.Web;
 using System.Web.Configuration;
 
@@ -145,11 +140,7 @@ namespace ClpQrColoring.Globals
 
         private static string GetFullPath(string path)
         {
-<<<<<<< HEAD
-            return Path.IsPathRooted(path) ?
-=======
             return FileHelper.IsAbsolutePath(path) ?
->>>>>>> ed95342c00fa102189769cd333b3b349eb2c8a6a
                 path : HttpContext.Current.Server.MapPath(path);
         }
 
