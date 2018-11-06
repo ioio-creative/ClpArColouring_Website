@@ -1,0 +1,47 @@
+﻿@* Obsolete *@
+
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css"
+          href="~/Content/GeneralError.css" />
+    <style>
+        @@media screen and (max-width: 767px) {
+            #divOuterMainBody {
+                background-image: url('@Url.Content("~/images/Latest/GeneralError/Background.png")');
+            }
+        }
+    </style>
+}
+
+@*<p>@Model.Exception.ToString()</p>*@
+
+<div id="divErrStatus" class="paddingOfTopDivFromNavBar">
+    <img alt="message"
+         class="img-responsive center-block"
+         src="~/images/Latest/GeneralError/GeneralErrorTitle_1x.png"
+         srcset="~/images/Latest/GeneralError/GeneralErrorTitle_1x.png 89w,
+                 ~/images/Latest/GeneralError/GeneralErrorTitle_2x.png 176w" />
+</div>
+
+<div id="divKid">
+    <img alt="kid"
+         class="img-responsive center-block"
+         src="~/images/Latest/Error/Kid_1x.png"
+         srcset="~/images/Latest/Error/Kid_1x.png 186w" />
+</div>
+
+<div id="divBackToHome">
+    <a href='@Url.Action("Index", "ArCharacters")'>
+        <img alt="back to upload"
+             class="img-responsive center-block"
+             src="~/images/Latest/GeneralError/BackToHomeButton_1x.png"
+             srcset="~/images/Latest/GeneralError/BackToHomeButton_1x.png 286w,
+                     ~/images/Latest/GeneralError/BackToHomeButton_2x.png 572w" />
+    </a>
+</div>

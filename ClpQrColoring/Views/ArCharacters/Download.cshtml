@@ -1,0 +1,84 @@
+﻿@using ClpQrColoring.Extensions;
+@using ClpQrColoring.Globals;
+
+@{
+    ViewBag.Title = "下載畫紙";    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
+    {        
+        ViewBag.PhoneBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/DownloadPaper/Background.png";
+    }
+    else
+    {       
+        ViewBag.PhoneBackgroundImage = Url.Content("~/Public/images/Latest/DownloadPaper/Background.png");
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/ArCharacters/Download.css" />
+
+    <style>
+    @@media screen and (max-width: 767px) {
+        #divOuterMainBody {
+            background-image: url('@ViewBag.PhoneBackgroundImage');
+        }
+    }
+    </style>
+
+    <style>
+        @@media screen and (min-width: 768px) and (max-width: 991px) {
+        }
+
+        @@media screen and (min-width: 992px) and (max-width: 1199px) {
+        }
+
+        @@media screen and (min-width: 1200px) {
+        }
+    </style>
+}
+
+<div id="divTitle">
+    <img alt="title"
+         class="img-responsive center-block paddingOfTopDivFromNavBar"
+         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/TitleMiddle_1x.png"
+         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/TitleMiddle_1x.png 191w" />
+</div>
+
+<div id="divGuideline">
+    <img alt="guideline"
+         class="img-responsive center-block"
+         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/Guideline_1x.png"
+         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/Guideline_1x.png 348w,
+                @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/Guideline_2x.png 696w" />
+</div>
+
+<div id="divPowerKid">
+    <img alt="power kid"
+         class="img-responsive center-block"
+         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/PowerKidWithColorSheet_1x.png"
+         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/PowerKidWithColorSheet_1x.png 736w" />
+</div>
+
+<div id="divDownload">
+    <a class="myBtn"
+       href="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/ColourSheet/CLPPowerYou-3DColorSheet_20171024.jpg"
+       download="CLPPowerYou-3DColorSheet.jpg">
+        <img alt="download"
+             class="img-responsive center-block"
+             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/DownloadPaperButton_1x.png"
+             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/DownloadPaperButton_1x.png 286w,
+                    @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/DownloadPaperButton_2x.png 746w" />
+    </a>
+</div>
+
+<div id="divUpload" class="lastBtnOfPage">
+    <a href='@Url.Action("Create", "ArCharacters")' class="myBtn">
+        <img alt="upload"
+             class="img-responsive center-block onTop"
+             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/UploadWorkButton_1x.png"
+             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/UploadWorkButton_1x.png 286w,
+                    @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/DownloadPaper/UploadWorkButton_2x.png 572w" />
+    </a>
+</div>

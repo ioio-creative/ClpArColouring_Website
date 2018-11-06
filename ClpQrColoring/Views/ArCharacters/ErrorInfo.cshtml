@@ -1,0 +1,61 @@
+﻿@using ClpQrColoring.Globals;
+
+@model ClpQrColoring.Models.ArCharacters.ErrorInfoViewModel
+
+@{
+    ViewBag.Title = Model.PageTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
+    {
+        ViewBag.PhoneBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Error/Background.png";
+    }
+    else
+    {
+        ViewBag.PhoneBackgroundImage = Url.Content("~/Public/images/Latest/Error/Background.png");
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/ArCharacters/ErrorInfo.css" />
+    <style>
+        @@media screen and (max-width: 767px) {
+            #divOuterMainBody {
+                background-image: url('@ViewBag.PhoneBackgroundImage');
+            }
+        }
+    </style>
+}
+
+<div id="divErrStatus" class="paddingOfTopDivFromNavBar">
+    <img alt="message"
+         class="img-responsive center-block"
+         src="@Model.ImgErrStatusSrc"
+         srcset="@Model.ImgErrStatusSrcset" />
+</div>
+
+<div id="divKid">
+    <img alt="kid"
+         class="img-responsive center-block"
+         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Error/Kid_1x.png"
+         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Error/Kid_1x.png 186w" />
+</div>
+
+<div id="divErrTip">
+    <img id="@Model.ImgErrTipElementId"
+         alt="tip"
+         class="img-responsive center-block"
+         src="@Model.ImgErrTipSrc"
+         srcset="@Model.ImgErrTipSrcset" />
+</div>
+
+<div id="divBackToUpload">
+    <a href='@Url.Action("Create", "ArCharacters")'>
+        <img alt="back to upload"
+             class="img-responsive center-block"
+             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Error/BackToUploadButton_1x.png"
+             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Error/BackToUploadButton_1x.png 286w,
+                     @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Error/BackToUploadButton_2x.png 572w" />
+    </a>
+</div>

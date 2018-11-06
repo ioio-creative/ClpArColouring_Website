@@ -1,0 +1,97 @@
+﻿@media screen and (max-width: 767px) {
+    #divGuideline {        
+        /*padding-top: 6vh;*/
+        padding-top: 10.66vw;
+    }
+    #divGuideline img {        
+        /*height: 8vh;*/
+        height: 14.22vw;
+    }
+            
+    #divPowerKid {        
+        /*padding-top: 6vh;*/
+        padding-top: 10.66vw;
+    }
+    #divPowerKid img {        
+        /*height: 20vh;*/
+        height: 35.55vw;
+    }
+            
+    #divDownload {       
+        /*padding-top: 6vh;*/
+        padding-top: 10.66vw;
+    }
+    #divDownload img {        
+        /*height: 6vh;*/
+        height: 10.66vw;
+    }
+
+    #divUpload {       
+        /*padding-top: 5vh;*/
+        padding-top: 8.88vw;
+    }
+    #divUpload img {       
+        /*height: 6vh;*/
+        height: 10.66vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    #divGuideline {
+        padding-top: 33px;
+    }
+    #divGuideline img {
+        width: 270px;
+    }
+            
+    #divPowerKid {
+        padding-top: 33px;
+    }
+    #divPowerKid img {
+        width: 300px;
+    }
+            
+    #divDownload {
+        padding-top: 33px;
+    }
+    #divDownload img {
+        width: 200px;
+    }
+
+    #divUpload {
+        padding-top: 41px;
+    }
+    #divUpload img {
+        width: 200px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #divGuideline {
+        padding-top: 20px;
+    }
+    #divGuideline img {
+        width: 250px;
+    }
+            
+    #divPowerKid {
+        padding-top: 20px;
+    }
+    #divPowerKid img {
+        width: 200px;
+    }
+            
+    #divDownload {
+        padding-top: 40px;
+    }
+    #divDownload img {
+        width: 190px;
+    }
+
+    #divUpload {
+        padding-top: 20px;
+    }
+    #divUpload img {
+        width: 190px;
+    }
+}

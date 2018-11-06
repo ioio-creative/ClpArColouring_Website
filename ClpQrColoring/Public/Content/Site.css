@@ -1,0 +1,381 @@
+﻿/*
+body {    
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+*/
+
+/* Set padding to keep content from hitting the edges */
+/*
+.body-content {    
+    padding-left: 15px;
+    padding-right: 15px;    
+}
+*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*
+.dl-horizontal dt {
+    white-space: normal;
+}
+*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+*/
+
+
+/* Added by Christophe Wong */
+
+body {
+    background-color: #89C3DE;
+}
+
+/* provide a general padding at bottom */
+#divOuterMainBody {
+    padding-bottom: 20px;
+}
+
+/* 
+    Note: 
+    height of navbar = 
+        height of CLP logo + padding of divNavbarRow
+    body padding-top is set accordingly.
+*/
+
+/* phone short height */
+@media screen and (max-width: 767px) and (max-height: 450px) {
+    /* 
+        TODO: To prevent stick to bottom elements from 
+        overlapping with other elements
+    */
+    #divOuterMainBody {
+        height: 178vw;
+    }
+}
+
+/* phone tall height */
+@media screen and (max-width: 767px) and (min-height: 451px) {
+    #divOuterMainBody {
+        /*height: 91vh;*/ /* complement body padding-top */
+        height: 161.77vw;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    body {
+        /*padding-top: 9vh;*/
+        padding-top: 14.21vw;
+    }
+
+    .paddingOfTopDivFromNavBar {
+        /*padding-top: 2.5vh;*/
+        padding-top: 4.44vw;
+    }
+
+    #divTitle img {
+        /*height: 11.5vh;*/
+        height: 20.44vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    body {
+        padding-top: 82px;
+    }
+
+    .paddingOfTopDivFromNavBar {
+        padding-top: 50px;
+    }
+
+    #divOuterMainBody {
+        min-height: 100vh; /* complement body padding-top */
+    }
+
+    #divTitle img {
+        width: 120px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    body {
+        padding-top: 99px;
+    }
+
+    .paddingOfTopDivFromNavBar {
+        padding-top: 20px;
+    }
+
+    #divOuterMainBody {
+        min-height: 100vh; /* complement body padding-top */
+    }
+
+    #divTitle img {
+        width: 100px;
+    }
+}
+
+
+/* images in navigation bar */
+
+.navCollapsedDropDownImg {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#imgNav {
+    min-width: 17px;
+    min-height: 10px;
+}
+
+#imgLogo {
+    min-width: 63px;
+    min-height: 37px;
+}
+
+@media screen and (max-width: 767px) {
+    #divNavbarRow {
+        /*padding-top: 1vh;
+        padding-bottom: 1vh;*/
+        padding-top: 1.77vw;
+        padding-bottom: 1.77vw;
+    }
+
+    #imgNav {
+        width: 35%;
+        max-width: 30px;
+    }
+
+    #imgLogo {
+        /*height: 7vh;*/
+        /* height: 7vh translates to height: 7 * 16/9 vw */
+        height: 12.44vw;
+    }
+
+    .navCollapsedDropDownImg {
+        width: 28.5%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    #divNavbarRow {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #imgNav {
+        width: 30px;
+    }
+
+    #imgLogo {
+        width: 103px;
+    }
+
+    .navCollapsedDropDownImg {
+        width: 150px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #divNavbarRow {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #imgNav {
+        width: 38px;
+    }
+
+    #imgLogo {
+        width: 132px;
+    }
+
+    .navCollapsedDropDownImg {
+        width: 150px;
+    }
+}
+
+/* end of images in navigation bar */
+
+
+/* navigation bar */
+
+/* navbar always collapse */
+/* https://www.bootply.com/kQjGtUBkc1 */
+
+.navbar-custom .navbar-header {
+    float: none;
+}
+
+.navbar-custom .navbar-toggle {
+    display: block;
+    float: left;
+    margin-left: 1em;
+}
+
+.navbar-custom .navbar-collapse.collapse {
+    display: none !important;
+}
+
+.navbar-custom .navbar-nav {
+    float: none !important;
+}
+
+    .navbar-custom .navbar-nav > li {
+        float: none;
+    }
+
+.navbar-custom .navbar-collapse.collapse.in {
+    display: block !important;
+}
+
+.navbar-custom .navbar-collapse {
+    padding: 0; /* collapsed ul drop down */
+}
+
+/*
+.icon-bar {
+    background-color:#FF0000 !important;
+}
+*/
+
+/*
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 66px !important;
+    height:8px !important;
+    border-radius: 25px !important;
+    margin: 10px !important; 
+}
+*/
+
+/* custom navbar dropdown, e.g. divider, etc. */
+/* https://stackoverflow.com/questions/18529274/change-navbar-color-in-twitter-bootstrap-3 */
+/* for dropdowns only */
+.navbar-custom .navbar-nav {
+    background-color: #B6DEE6;
+}
+
+    .navbar-custom .navbar-nav > li > a {
+        color: #fff;
+    }
+
+        .navbar-custom .navbar-nav > li > a:hover, .navbar-custom .navbar-nav > li > a:focus {
+            color: #B6DEE6;
+        }
+    /* https://stackoverflow.com/questions/40810327/add-separator-in-collapsed-nav-bootstrap */
+    .navbar-custom .navbar-nav > li.divider {
+        height: 2px;
+        margin: 0 10%;
+        overflow: hidden;
+        background-color: #fff;
+    }
+
+.navbar-custom .navbar {
+    position: relative;
+}
+
+/* collapsed ul drop down */
+.navbar-custom ul.navbar-nav {
+    margin: 0;
+}
+
+/* end of navigation bar */
+
+
+/* last button of page */
+
+@media screen and (max-width: 767px) {
+    .lastBtnOfPage {
+        /*padding-bottom: 1.5vh;*/
+        padding-bottom: 2.66vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .lastBtnOfPage {
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .lastBtnOfPage {
+        padding-bottom: 25px;
+    }
+}
+
+/* end of last button of page */
+
+
+/* general */
+
+.displayNone {
+    display: none !important;
+}
+
+.displayBlock {
+    display: block !important;
+}
+
+/* http://code2care.org/pages/center-align-image-bootstrap/ */
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.myBtn {
+    /* https://stackoverflow.com/questions/7421775/css-i-want-a-div-to-be-on-top-of-everything */
+    /* make the button stay on top */
+    z-index: 10;
+    position: relative;
+    /* https://stackoverflow.com/questions/16944646/html-hand-cursor-not-showing-in-anchor-tag-when-hovered */
+    cursor: pointer;
+}
+
+.onTop {
+    z-index: 10;
+    position: relative;
+}
+
+/* 
+    Note: 
+    The classes vertical-align-center and vertical-center are a bit strange.
+    They work in different scenarios.
+    vertical-center and vertical-bottom usually works well in iOS.
+    i.e. Some time one works, some time another works.
+*/
+
+/* https://stackoverflow.com/questions/37156582/bootstrap-vertical-align-image */
+.vertical-align-center {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* https://stackoverflow.com/questions/20547819/vertical-align-with-bootstrap-3 */
+/* https://codepen.io/hashem/pen/Lsprw?editors=110 */
+/* usually works well in iOS */
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+/* usually works well in iOS */
+.vertical-bottom {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-direction: row;
+}
+
+/* end of general */

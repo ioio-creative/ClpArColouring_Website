@@ -1,0 +1,98 @@
+﻿@using ClpQrColoring.Extensions;
+@using ClpQrColoring.Globals;
+
+@{
+    ViewBag.Title = "超人中中 - 3D動畫填色遊戲";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
+    {        
+        ViewBag.PhoneBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Landing/Background.png";
+    }
+    else
+    {        
+        ViewBag.PhoneBackgroundImage = Url.Content("~/Public/images/Latest/Landing/Background.png");
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/ArCharacters/Index.css" />
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/ArCharacters/_RainbowPartial.css" />
+    <style>
+        /* set repeated background image source except for mobile phone */
+        @@media screen and (max-width: 767px) {
+            #divOuterMainBody {
+                background-image: url('@ViewBag.PhoneBackgroundImage');
+            }
+        }
+    </style>
+}
+
+<div class="row vertical-bottom paddingOfTopDivFromNavBar">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-6">
+        <img id="imgCentreText" alt="title"
+             class="img-responsive center-block onTop"
+             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Landing/CentreText_1x.png"
+             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Landing/CentreText_1x.png 98w" />
+    </div>
+    <div class="col-xs-3">
+        <img id="imgSideText" alt="guideline"
+             class="img-responsive onTop"
+             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Landing/SideText_1x.png"
+             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Landing/SideText_1x.png 78w" />
+    </div>
+</div>
+
+<div id="divCountDown">    
+    <img alt="count down"
+         class="img-responsive center-block onTop"
+         src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/LoadingGif/DotLoadingLoop_1x.gif"
+         srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/LoadingGif/DotLoadingLoop_1x.gif 94w" />
+</div>
+
+@section Rainbow {
+    @{
+        string imgEarth2xSrc, imgRainbowKid2xSrc;
+        if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
+        {
+            imgEarth2xSrc = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Landing/Earth_2x.png";
+            imgRainbowKid2xSrc = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Landing/RainbowKid_2x.png";
+        }
+        else
+        {
+            imgEarth2xSrc = Url.Content("~/Public/images/Latest/Landing/Earth_2x.png");
+            imgRainbowKid2xSrc = Url.Content("~/Public/images/Latest/Landing/RainbowKid_2x.png");
+        }
+
+        Html.RenderPartial("~/Views/ArCharacters/_RainbowPartial.cshtml",
+            new ClpQrColoring.Models.ArCharacters._RainbowPartialViewModel()
+            {
+                ImgEarthSrc = imgEarth2xSrc,
+                ImgEarthSrcset = imgEarth2xSrc + " 774w",
+
+                ImgRainbowKidSrc = imgRainbowKid2xSrc,
+                ImgRainbowKidSrcset = imgRainbowKid2xSrc + " 821w"
+            }
+        );
+    }
+}
+
+@section Scripts {
+    <script>
+        $(function () {
+            var maxCount = @ViewBag.SecsToStayInIndex;
+            var counter = 0;
+
+            var x = setInterval(function () {
+                if (counter == maxCount) {
+                    window.location.href = '@Url.Action("Download", "ArCharacters")';
+                }                
+
+                counter++;
+            }, 1000);
+        });
+    </script>
+}

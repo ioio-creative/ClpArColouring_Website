@@ -1,0 +1,229 @@
+﻿@* https://stackoverflow.com/questions/3239006/how-do-i-import-a-namespace-in-razor-view-page *@
+@using ClpQrColoring.Extensions;
+@using ClpQrColoring.Globals;
+
+@{
+    // Open Graph
+    ViewBag.CanonicalUrl = Url.Action(true, "Index", "ArCharacters");
+    ViewBag.OGTitle = "超人中中3D動畫填色遊戲";
+    //ViewBag.OGDesc = "我整咗一條屬於自己嘅超人中中3D動畫，click入嚟睇下啦！你都可以整埋一份，齊齊慳電啦 ;)";
+    ViewBag.OGDesc = "我整咗一條屬於自己嘅超人中中3D動畫，click入嚟睇下啦！";
+
+    ViewBag.DefaultOGImage = SiteGlobal.IsLoadStaticResourceFromAwsS3 ?
+        SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Sharing/PowerKidLong_compressed.jpg" :
+        Url.Content(true, "~/Public/images/Latest/Sharing/PowerKidLong_compressed.jpg");
+
+    ViewBag.DefaultOGImageWidth = 1200;
+    ViewBag.DefaultOGImageHeight = 630;
+
+    if (SiteGlobal.IsLoadStaticResourceFromAwsS3)
+    {
+        ViewBag.Favicon = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Icons/index.ico";
+        ViewBag.CloudLoopBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Background/CloudLoop_1x.png";
+        ViewBag.SkyGradientBackgroundImage = SiteGlobal.StaticResourceUrlPrefix + "Public/images/Latest/Background/SkyBackground.jpg";
+    }
+    else
+    {
+        ViewBag.Favicon = Url.Content("~/Public/images/Latest/Icons/index.ico");
+        ViewBag.CloudLoopBackgroundImage = Url.Content("~/Public/images/Latest/Background/CloudLoop_1x.png");
+        ViewBag.SkyGradientBackgroundImage = Url.Content("~/Public/images/Latest/Background/SkyBackground.jpg");
+    }
+}
+
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8" />
+    @*
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    *@
+    <meta name="viewport" content="maximum-scale=1, minimum-scale=1, width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <title>@(String.IsNullOrEmpty(ViewBag.Title) ? "超人中中 - 3D動畫填色遊戲" : ViewBag.Title)</title>
+
+    @* SEO stuff *@
+
+    @* http://www.dwuser.com/education/content/quick-tip-adding-a-favicon-to-your-website/ *@
+    @* https://stackoverflow.com/questions/1990475/how-can-i-retrieve-the-favicon-of-a-website *@
+    <link rel="shortcut icon" href='@ViewBag.Favicon' type="image/vnd.microsoft.icon" id="favicon" />
+
+    <!-- https://developers.facebook.com/docs/sharing/webmasters/crawler#canonical -->
+    <link rel="canonical" href='@ViewBag.CanonicalUrl' />
+    <meta property="og:url" content='@Url.Content(true)' />
+
+    <meta name="description" content='@ViewBag.OGDesc'>
+    <meta name="keywords" content='@SiteGlobal.WebsiteKeywords'>
+    <meta name="copyrights" content="© 2016 CLP Power Hong Kong Limited.中華電力有限公司 All Rights Reserved.">
+    <meta name="author" content="CLP Power Hong Kong Limited.中華電力有限公司">
+
+    @* open graph protocol *@
+    <meta property="og:title" content="@ViewBag.OGTitle" />
+    <meta property="og:site_name" content="CLP" />
+    <meta property="og:description" content="@ViewBag.OGDesc">
+    <meta property="og:type" content='@(String.IsNullOrEmpty(ViewBag.OGType) ? "website" : ViewBag.OGType)' />
+
+    <meta property="og:image" itemprop="image" content="@(String.IsNullOrEmpty(ViewBag.OGImage) ? ViewBag.DefaultOGImage : ViewBag.OGImage)" />
+    <meta property="og:image:secure_url" itemprop="image" content="@(String.IsNullOrEmpty(ViewBag.OGImage) ? ViewBag.DefaultOGImage : ViewBag.OGImage)" />
+    <meta property="og:image:width" content="@(ViewBag.OGImageWidth ?? ViewBag.DefaultOGImageWidth)" />
+    <meta property="og:image:height" content="@(ViewBag.OGImageHeight ?? ViewBag.DefaultOGImageHeight)" />
+
+    <meta property="og:locale" content="zh_HK" />
+
+    @RenderSection("OpenGraphVideo", required: false)
+
+    <meta property="fb:app_id" content="@SiteGlobal.FacebookAppId" />
+
+    @*Styles.Render("~/Public/Content/css")*@
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css"
+          href="@(SiteGlobal.StaticResourceUrlPrefix)Public/Content/Site.css" />
+
+    @RenderSection("HeaderScripts", required: false)
+
+    <style>
+        @@media screen and (max-width: 767px) {
+            #divInnerMainBody {
+                max-width: 414px; /* iPhone Plus width */
+            }
+
+            #divOuterMainBody {
+                /*position: relative;*/
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: scroll;
+            }
+        }
+
+        @@media screen and (max-width: 767px) {
+            #divOuterMainBody {
+                background-size: cover;
+                background-position: center bottom;
+            }
+        }
+
+        @@media screen and (min-width: 768px) and (max-width: 991px) {
+            #divOuterMainBody {
+                background-size: 750px auto, 100% 100%;
+                background-repeat: repeat-x, no-repeat;
+                background-position: center top, center center;
+            }
+        }
+
+        @@media screen and (min-width: 992px) {
+            #divOuterMainBody {
+                background-size: 750px auto, 100% 100%;
+                background-repeat: repeat-x, no-repeat;
+                background-position: center top, center center;
+            }
+        }
+    </style>
+
+    <style>
+    /* set repeated background image source except for mobile phone */
+    @@media screen and (min-width: 767px) {
+        #divOuterMainBody {
+            background-image: url('@ViewBag.CloudLoopBackgroundImage'),
+                              url('@ViewBag.SkyGradientBackgroundImage');
+        }
+    }
+    </style>
+
+    @RenderSection("styles", required: false)
+
+    @* did not use modernizr features *@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="navbar-header">
+            <div class="container-fluid">
+                <div id="divNavbarRow" class="row vertical-align-center">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-3">
+                        <a id="btnNav" href="#" data-toggle="collapse" data-target=".navbar-collapse">
+                            <img id="imgNav" alt="navigation"
+                                 class="img-responsive"
+                                 src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/NavButton_1x.png"
+                                 srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/NavButton_1x.png 45w" />
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        @*<a href='@Url.Action("Index", "ArCharacters")' target='_blank'>*@
+                        <a href='https://www.clp.com.hk/PowerYou' target='_blank'>
+                            <img id="imgLogo" alt="logo"
+                                 class="img-responsive center-block"
+                                 src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/ClpLogo_1x.png"
+                                 srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/ClpLogo_1x.png 159w" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="navMenu" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href='@Url.Action("Download", "ArCharacters")'>
+                        <img alt="download sheet"
+                             class="img-responsive center-block navCollapsedDropDownImg"
+                             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/DownloadColorSheetButton_1x.png"
+                             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/DownloadColorSheetButton_1x.png 204w,
+                                    @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/DownloadColorSheetButton_2x.png 407w" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a href='@Url.Action("Create", "ArCharacters")'>
+                        <img alt="upload work"
+                             class="img-responsive center-block navCollapsedDropDownImg"
+                             src="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/UploadWorkButton_1x.png"
+                             srcset="@(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/UploadWorkButton_1x.png 206w,
+                                    @(SiteGlobal.StaticResourceUrlPrefix)Public/images/Latest/Navbar/UploadWorkButton_2x.png 412w" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="divOuterMainBody">
+        <div id="divInnerMainBody" class="container center-block">
+            @RenderBody()
+        </div>
+        @RenderSection("Rainbow", required: false)
+    </div>
+
+
+    @*Scripts.Render("~/bundles/jquery")*@
+    @*Scripts.Render("~/bundles/bootstrap")*@
+    <script src='@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/jquery-3.2.1.min.js'></script>
+    <script src='@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/bootstrap.min.js'></script>
+    <script src='@(SiteGlobal.StaticResourceUrlPrefix)Public/Scripts/respond.min.js'></script>
+
+    <script>
+        $(function () {
+            if (window.screen.availWidth < 768) {
+                $('#divInnerMainBody').addClass('container-fluid');
+                $('#divInnerMainBody').removeClass('container');
+            } else {
+                $('#divInnerMainBody').addClass('container');
+                $('#divInnerMainBody').removeClass('container-fluid');
+            }
+
+            // How to close an open collapsed navbar when clicking outside of the navbar element in Bootstrap 3?
+            // https://stackoverflow.com/questions/23764863/how-to-close-an-open-collapsed-navbar-when-clicking-outside-of-the-navbar-elemen
+            $(document).click(function (event) {
+                var clickOver = $(event.target);
+                var isNavMenuOpened = $('#navMenu').hasClass('navbar-collapse collapse in');
+                if (isNavMenuOpened && !clickOver.hasClass('navbar-toggle')) {
+                    $('#btnNav').click();
+                }
+            });
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

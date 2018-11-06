@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ClpQrColoring" Class="ColorAppDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ioio-aws.cpj7x1dsbh3k.ap-southeast-1.rds.amazonaws.com,1433;Initial Catalog=ClpQrColoring;User ID=IoioSa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ClpQrColoringConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.String" DbType="Char(25) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CreateDT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AwsS3OrigImgKey" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="AwsS3WarpedImgKey" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="AwsS3VideoKey" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="AwsS3BucketDomain" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="WarpImageErrorCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsVideoCreated" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AwsS3VideoThumbnailKey" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

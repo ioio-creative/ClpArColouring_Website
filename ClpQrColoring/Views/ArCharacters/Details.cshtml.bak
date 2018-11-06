@@ -1,0 +1,114 @@
+﻿@using ClpQrColoring.Extensions;
+
+@model ClpQrColoring.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Open Graph
+    ViewBag.OGTitle = "CLP QR Coloring";
+    ViewBag.OGDesc = "It couldn’t be easier to get started." +
+        "Simply print off any coloring page from our website or app.";
+    ViewBag.OGImage = Model.AwsS3BucketDomain + Model.AwsS3ThumbnailKey;
+}
+
+@section Styles {
+    <style>
+    body {
+        background-image: url('../../images/06.jpg');
+    }
+
+    #btnMusicVideo {
+        position: absolute;
+        bottom: 25%;
+        left: 30%;
+    }
+
+    #imgMusicVideo {
+        width: 60%;
+    }
+    </style>
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        @*
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        *@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+    @Html.HiddenFor(model => model.ID)
+</div>
+<div>
+    <video width="480" height="360" autoplay controls>
+        <source type="video/mp4" src="@(Model.AwsS3BucketDomain + Model.AwsS3VideoKey)">
+    </video>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index") |
+    <a href="whatsapp://send?text=@(Url.Content(true))" id="whatsapp" data-action="share/whatsapp/share">
+        Share on WhatsApp now
+    </a> |
+    <a href="mailto:%20?
+        cc=%20
+        &amp;bcc=smtpclient.ioio@gmail.com
+        &amp;subject=The%20subject%20of%20the%20email
+        &amp;body=The%20body%20of%20the%20email">
+        Send mail with cc, bcc, subject and body
+    </a>
+    <div id="btnFbShare" class="btn btn-success clearfix">Share</div>
+</p>
+
+<a id="btnMusicVideo" href="#">
+    <img id="imgMusicVideo" src="~/images/01_StartGame.jpg" alt="MusicVideo" />
+</a>
+
+@section Scripts {
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '462027067506556',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v2.10'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        document.getElementById('btnFbShare').onclick = function () {
+            FB.ui({
+                method: 'share',
+                display: 'popup',
+                href: 'https://developers.facebook.com/docs/',
+            }, function (response) { });
+        }
+    </script>
+}

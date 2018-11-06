@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "網頁錯誤";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-danger">400 Bad Request</h1>
+<h2 class="text-danger">Redirecting ...</h2>
+
+@section Scripts {
+    <script>
+        window.location.assign('@Url.Action("Index", "ArCharacters")');
+    </script>
+}
