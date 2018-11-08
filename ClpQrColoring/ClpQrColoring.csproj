@@ -527,6 +527,7 @@
     <Content Include="Views\ArCharacters\Create.cshtml" />
     <Content Include="Views\ArCharacters\Index.cshtml" />
     <None Include="Views\ArCharacters\Details.cshtml.bak" />
+    <None Include="Web.Common.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -582,9 +583,10 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
+       Other similar extension points exist, see Microsoft.Common.targets. -->
   <Target Name="BeforeBuild">
+    <TransformXml Source="Web.Common.config" Transform="Web.$(Configuration).config" Destination="Web.config" />
   </Target>
-  <Target Name="AfterBuild">
+  <!-- <Target Name="AfterBuild">
   </Target> -->
 </Project>
