@@ -483,6 +483,7 @@
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -527,7 +528,6 @@
     <Content Include="Views\ArCharacters\Create.cshtml" />
     <Content Include="Views\ArCharacters\Index.cshtml" />
     <None Include="Views\ArCharacters\Details.cshtml.bak" />
-    <None Include="Web.Common.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
