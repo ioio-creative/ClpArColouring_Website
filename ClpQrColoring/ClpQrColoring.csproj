@@ -585,7 +585,7 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets. -->
   <Target Name="BeforeBuild">
-    <TransformXml Source="Web.Common.config" Transform="Web.$(Configuration).config" Destination="Web.config" />
+    <TransformXml Source="Web.config" Transform="Web.$(Configuration).config" Destination="Web.config" />
   </Target>
   <!-- <Target Name="AfterBuild">
   </Target> -->
