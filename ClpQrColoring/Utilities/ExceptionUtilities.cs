@@ -11,7 +11,7 @@ namespace ClpQrColoring.Utilities
     public sealed class ExceptionUtilities
     {
         private static string ErrorLogFilePath = SiteGlobal.ErrorLogFilePath;
-        private static string ErrorNotificationEmailRecipients = SiteGlobal.ErrorNotificationEmailRecipients;
+        private static string[] ErrorNotificationEmailRecipients = SiteGlobal.ErrorNotificationEmailRecipients;
 
         // All methods are static, so this can be private 
         private ExceptionUtilities()
@@ -53,7 +53,7 @@ namespace ClpQrColoring.Utilities
         // Notify System Operators about an exception 
         public async static Task NotifySystemOps(Exception exc, HttpRequest request)
         {
-            await EmailUtilities.SendInternalErrorNotificationAsysnc(
+            await EmailUtilities.SendInternalErrorNotificationAsync(
                 ErrorNotificationEmailRecipients, exc);
         }
     }

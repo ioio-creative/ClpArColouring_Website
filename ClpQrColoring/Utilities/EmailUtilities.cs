@@ -1,6 +1,7 @@
 ﻿using ClpQrColoring.Extensions;
 using ClpQrColoring.Globals;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Configuration;
 using System.Net.Mail;
@@ -45,17 +46,22 @@ namespace ClpQrColoring.Utilities
             };
         }
 
-        private static void AddMultipleRecipientsToMailMessage(MailMessage mailMessage, string receiverAddrs)
-        {
-            string[] receivers = receiverAddrs.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string receiver in receivers)
+        private static void AddMultipleRecipientsToMailMessage(MailMessage mailMessage, IEnumerable<string> receiverAddrs)
+        {            
+            foreach (string receiverAddr in receiverAddrs)
             {
-                mailMessage.To.Add(receiver);
+                mailMessage.To.Add(receiverAddr);
             }
         }
 
+        public async static Task SendVideoCreatedNotificationAsync(string receiverAddr, string newUserId)
+        {
+            await SendVideoCreatedNotificationAsync(new string[] { receiverAddr }, newUserId);
+        }
+
+        // OBSOLETE, replaced by EmailViaOAuthUtilities.SendVideoCreatedNotificationAsync
         // receiverAddrs can be comma separated list
-        public async static Task SendVideoCreatedNotificationAsync(string receiverAddrs, string newUserId)
+        public async static Task SendVideoCreatedNotificationAsync(IEnumerable<string> receiverAddrs, string newUserId)
         {
             string inquiryEmailAddr = @"powerkid@clp.com.hk";
             string mailBodyFormat = @"<p>動畫已經準備好！立即點擊以下連結，觀看屬於你的超人中中3D動畫！記得同朋友分享，大家一齊慳電啦！</p>" +
@@ -103,7 +109,12 @@ namespace ClpQrColoring.Utilities
             }
         }
 
-        public async static Task SendInternalErrorNotificationAsysnc(string receiverAddrs, Exception exc)
+        public async static Task SendInternalErrorNotificationAsync(string receiverAddr, Exception exc)
+        {
+            await SendInternalErrorNotificationAsync(new string[] { receiverAddr }, exc);
+        }
+
+        public async static Task SendInternalErrorNotificationAsync(IEnumerable<string> receiverAddrs, Exception exc)
         {
             StringBuilder MessageBodyBuilder = new StringBuilder();
             MessageBodyBuilder.AppendFormat("********** {0} **********", DateTime.Now);
@@ -158,7 +169,13 @@ namespace ClpQrColoring.Utilities
             }
         }
 
-        public async static Task SendInternalEventNotificationAsync(string receiverAddrs, 
+        public async static Task SendInternalEventNotificationAsync(string receiverAddr,
+            string eventName, string actionName, string newUserId)
+        {
+            await SendInternalEventNotificationAsync(new string[] { receiverAddr }, eventName, actionName, newUserId);
+        }
+
+        public async static Task SendInternalEventNotificationAsync(IEnumerable<string> receiverAddrs, 
             string eventName, string actionName, string newUserId)
         {
             StringBuilder MessageBodyBuilder = new StringBuilder();

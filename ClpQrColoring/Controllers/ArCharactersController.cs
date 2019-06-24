@@ -20,7 +20,7 @@ namespace ClpQrColoring.Controllers
     //[Authorize(Users = "admin@ioio.com.hk")]    
     public class ArCharactersController : Controller
     {
-        private static string EventNotificationEmailRecipients = SiteGlobal.ErrorNotificationEmailRecipients;
+        private static string[] EventNotificationEmailRecipients = SiteGlobal.ErrorNotificationEmailRecipients;
 
         // GET: ArCharacters
         [AllowAnonymous]
@@ -288,9 +288,15 @@ namespace ClpQrColoring.Controllers
 
 
                     // Send email to user
-                    //await EmailUtilities.SendVideoCreatedNotificationAsync(@"szewa.wong@connect.polyu.hk", newUserId);
-                    await EmailUtilities.SendVideoCreatedNotificationAsync(user.Email, newUserId);
-
+                    if (SiteGlobal.IsUseOAuthForClpNonReplyEmail)
+                    {
+                        await EmailViaOAuthUtilities.SendVideoCreatedNotificationAsync(user.Email, newUserId);                        
+                    }
+                    else
+                    {
+                        //await EmailUtilities.SendVideoCreatedNotificationAsync(@"szewa.wong@connect.polyu.hk", newUserId);
+                        await EmailUtilities.SendVideoCreatedNotificationAsync(user.Email, newUserId);
+                    }
 
                     // https://stackoverflow.com/questions/1257482/redirecttoaction-with-parameter
                     //return RedirectToAction("Details", new { id = newUserId });

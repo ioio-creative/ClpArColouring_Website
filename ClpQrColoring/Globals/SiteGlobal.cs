@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Web.Configuration;
@@ -44,7 +45,8 @@ namespace ClpQrColoring.Globals
 
         public static string[] AllowedUploadFileExtensions { get; }    
         public static int NumOfSecsToStayInLandingPage { get; }
-        public static string ErrorNotificationEmailRecipients { get; }
+        public static string[] ErrorNotificationEmailRecipients { get; }
+        public static bool IsUseOAuthForClpNonReplyEmail { get; }
 
         // Local file paths
         public static string ErrorLogFilePath { get; }
@@ -89,12 +91,13 @@ namespace ClpQrColoring.Globals
         static SiteGlobal()
         {
             AllowedUploadFileExtensions =
-                WebConfigurationManager.AppSettings["AllowedUploadFileExtensions"]
-                .Split(',');
+                GetCommaDelimitedStrings(WebConfigurationManager.AppSettings["AllowedUploadFileExtensions"]);                
             NumOfSecsToStayInLandingPage = int.Parse(
                 WebConfigurationManager.AppSettings["NumOfSecsToStayInLandingPage"]);
             ErrorNotificationEmailRecipients =
-                WebConfigurationManager.AppSettings["ErrorNotificationEmailRecipients"];
+                GetCommaDelimitedStrings(WebConfigurationManager.AppSettings["ErrorNotificationEmailRecipients"]);
+            IsUseOAuthForClpNonReplyEmail = bool.Parse(
+                WebConfigurationManager.AppSettings["IsUseOAuthForClpNonReplyEmail"]);
 
             ErrorLogFilePath = GetFullPath(
                 WebConfigurationManager.AppSettings["ErrorLogFilePath"]);
@@ -136,6 +139,16 @@ namespace ClpQrColoring.Globals
 
             FacebookAppId = WebConfigurationManager.AppSettings["FacebookAppId"];
             WebsiteKeywords = WebConfigurationManager.AppSettings["WebsiteKeywords"];
+        }
+
+        private static string[] GetCommaDelimitedStrings(string delimitedString)
+        {
+            return delimitedString.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private static string[] GetDelimitedStrings(string delimitedString, string[] delimiters)
+        {
+            return delimitedString.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
         }
 
         private static string GetFullPath(string path)
