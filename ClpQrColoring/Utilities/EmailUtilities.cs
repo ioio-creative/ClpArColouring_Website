@@ -59,8 +59,7 @@ namespace ClpQrColoring.Utilities
             await SendVideoCreatedNotificationAsync(new string[] { receiverAddr }, newUserId);
         }
 
-        // OBSOLETE, replaced by EmailViaOAuthUtilities.SendVideoCreatedNotificationAsync
-        // receiverAddrs can be comma separated list
+        // OBSOLETE, replaced by EmailViaOAuthUtilities.SendVideoCreatedNotificationAsync        
         public async static Task SendVideoCreatedNotificationAsync(IEnumerable<string> receiverAddrs, string newUserId)
         {
             string inquiryEmailAddr = @"powerkid@clp.com.hk";

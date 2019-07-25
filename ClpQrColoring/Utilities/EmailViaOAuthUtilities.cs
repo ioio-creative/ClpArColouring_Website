@@ -92,7 +92,7 @@ namespace ClpQrColoring.Utilities
 
         public async static Task SendVideoCreatedNotificationAsync(IEnumerable<string> toEmailAddrs, string newUserId)
         {
-            string fromEmailAddr = @"CLP Error &lt;smtpclient2.ioio@gmail.com&gt;";
+            string fromEmailAddr = @"超人中中3D動畫 &lt;3dcolouring@clp.com.hk&gt;";
             string inquiryEmailAddr = @"powerkid@clp.com.hk";
             string mailSubject = "超人中中3D動畫填色遊戲";
             string mailContentFormat = @"<p>動畫已經準備好！立即點擊以下連結，觀看屬於你的超人中中3D動畫！記得同朋友分享，大家一齊慳電啦！</p>" +
