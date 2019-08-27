@@ -97,6 +97,7 @@ body {
 
     #divOuterMainBody {
         min-height: 100vh; /* complement body padding-top */
+        min-height: calc(100vh - 82px);
     }
 
     #divTitle img {
@@ -115,6 +116,7 @@ body {
 
     #divOuterMainBody {
         min-height: 100vh; /* complement body padding-top */
+        min-height: calc(100vh - 99px);
     }
 
     #divTitle img {
