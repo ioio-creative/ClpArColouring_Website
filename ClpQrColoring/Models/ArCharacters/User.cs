@@ -49,7 +49,7 @@ namespace ClpQrColoring.Models.ArCharacters
         */
         // https://code.msdn.microsoft.com/MVC-File-upload-unobtrusive-d0099c30
         [FileTypeValidator("jpg", "jpeg", "png", ErrorMessage = "檔案須為.jpg/.png格式")]
-        [MaximumFileSizeValidator(5, ErrorMessage = "檔案上限：5MB")]
+        [MaximumFileSizeValidator(10, ErrorMessage = "檔案上限：10MB")]
         [MinimumFileSizeValidator(0, ErrorMessage = "檔案下限：0MB")]                
         //[FileUploadValidator(0.5, 2.4, "png")]
         public HttpPostedFileBase PostedFile { get; set; }
