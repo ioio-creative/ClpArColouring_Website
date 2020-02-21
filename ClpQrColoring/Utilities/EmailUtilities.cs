@@ -108,16 +108,22 @@ namespace ClpQrColoring.Utilities
             }
         }
 
-        public async static Task SendInternalErrorNotificationAsync(string receiverAddr, Exception exc)
+        public async static Task SendInternalErrorNotificationAsync(string receiverAddr, Exception exc, HttpRequest request)
         {
-            await SendInternalErrorNotificationAsync(new string[] { receiverAddr }, exc);
+            await SendInternalErrorNotificationAsync(new string[] { receiverAddr }, exc, request);
         }
 
-        public async static Task SendInternalErrorNotificationAsync(IEnumerable<string> receiverAddrs, Exception exc)
+        public async static Task SendInternalErrorNotificationAsync(IEnumerable<string> receiverAddrs, Exception exc, HttpRequest request)
         {
             StringBuilder MessageBodyBuilder = new StringBuilder();
             MessageBodyBuilder.AppendFormat("********** {0} **********", DateTime.Now);
-            MessageBodyBuilder.AppendLine("");                       
+            MessageBodyBuilder.AppendLine("");
+            if (request != null)
+            {
+                MessageBodyBuilder.Append("Request From Address: ");
+                MessageBodyBuilder.AppendLine(request.UserHostAddress);
+                MessageBodyBuilder.AppendLine("");
+            }
             if (exc.InnerException != null)
             {
                 MessageBodyBuilder.Append("Inner Exception Type: ");

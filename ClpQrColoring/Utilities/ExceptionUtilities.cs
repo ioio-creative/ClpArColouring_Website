@@ -54,7 +54,7 @@ namespace ClpQrColoring.Utilities
         public async static Task NotifySystemOps(Exception exc, HttpRequest request)
         {
             await EmailUtilities.SendInternalErrorNotificationAsync(
-                ErrorNotificationEmailRecipients, exc);
+                ErrorNotificationEmailRecipients, exc, request);
         }
     }
 }
